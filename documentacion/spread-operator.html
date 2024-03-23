@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spread Operator</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué hace el operador de extensión en JS? </h1>
+
+            <h2>1. Introducción</h2>
+
+            <p>Spread, el nuevo operador de propagación que ofrece JavaScript ES6, nos resultará de ayuda para ahorrar líneas de
+               código a la hora de crear tu proyecto web, ya que genera una lista de valores a partir de un array y es un excelente
+               recurso para mejorar el código JavaScript.</p>
+
+            
+            <blockquote>
+                <p>La definición que nos da MDN es: "Spread syntax allows an iterable such as an array
+                    expression or string to be expanded in places where zero or more arguments (for function
+                    calls) or elements, (for array literals) are expected, or an object expression to be
+                    expanded in places where zero or more key-value pairs (for object literals) are expected."</p>
+            </blockquote>
+
+            <p>Lo que quiere decir que este operador distribuye los elementos dentro de un iterable
+            (cadena de texto, array o cualquier cosa que se pueda recorrer) dentro de un receptor.</p>
+
+            <p>Se puede utilizar para concatenar arrays, crear copias de arrays, convertir cadenas de caracteres en arrays de
+                caracteres unir o clonar objetos, y pasar, de forma dinámica, valores a funciones o constructores, entre otras cosas</p>
+             
+             <p>El operador Spread simplifica operaciones complejas y proporciona un código más expresivo y eficiente. Esto hace
+                que sea una característica popular entre los desarrolladores de JavaScript.</p>
+
+            <h2>2. Sintaxis</h2>
+            <p>El operador Spread se denota por tres puntos "..." seguidos de una expresión o un objeto iterable. Es Una
+               herramienta poderosa que proporciona una forma concisa y flexible de trabajar con datos en JavaScript.</p>
+            
+            <p>La sintaxis del operador Spread es exactamente la misma del parámetro "...rest", aunque en realidad 
+                se puede decir que uno hace justo lo opuesto al otro. El operador Spread expande un array en sus
+                elementos, mientras que el parámetro "rest" reune múltiples elementos y los condensa en un solo
+                elemento.</p>
+
+            <p>Vamos a ver en que consiste el operador Spread con ejemplos de uso:</p>
+
+            <h2>3. Copiar un array</h2>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let animales = ['perro', 'caballo', 'gato', 'oso', 'jirafa'];</li>
+                    <li>&ensp;console.log(animales); // 'perro', 'caballo', 'gato', 'oso', 'jirafa'</li>
+                    <li></li>
+                    <li>&ensp;let copiaDeAnimales = [...animales];</li>
+                    <li>&ensp;console.log(copiaDeAnimales); // 'perro', 'caballo', 'gato', 'oso', 'jirafa'</li>
+                </ol>
+            </div>
+
+            <h2>4. Copiar un array y añadirle elementos</h2>
+
+            <p>Podemos hacer copias de arrays y además añadir elementos al array, tanto al principio como
+               al final de éste.</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let poblaciones = ['Benicasim', 'Castellón', 'Alcocebre'];</li>
+                    <li>&ensp;console.log(poblaciones);  // ["Benicasim", "Castellón", "Alcocebre"]</li>
+                    <li></li>
+                    <li>&ensp;let nuevasPoblaciones = ['Oropesa', ...poblaciones];</li>
+                    <li>&ensp;console.log(nuevasPoblaciones); // ["Oropesa", "Benicasim", "Castellón", "Alcocebre"]</li>
+                    <li></li>
+                    <li>&ensp;let masPoblacionesNuevas = [...poblaciones, 'Madrid'];</li>
+                    <li>&ensp;console.log(masPoblacionesNuevas);  // ["Benicasim", "Castellón", "Alcocebre", "Madrid"]</li>
+                </ol>
+            </div>
+
+            <h2>5. Concatenar arrays</h2>
+
+            <p>Puedes utilizar el operador Spread para incluir los elementos de un array en otro array. Esto es particularmente
+               útil para concatenar arrays o hacer copias de arrays que no tengan otros arrays anidados.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let peces = ['emperador', 'salmón'];</li>
+                    <li>&ensp;let insectos = ['hormiga', 'mosquito'];</li>
+                    <li>&ensp;console.log([...peces, ...insectos]);  // ["emperador", "salmón", "hormiga", "mosquito"]</li>
+                </ol>
+            </div>
+
+            <p>Esto también funciona con arrays de diferentes tipos de datos, por ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let numeros = [1, 2, 3];</li>
+                    <li>&ensp;let meses = ['enero', 'febrero', 'marzo'];</li>
+                    <li>&ensp;console.log([...numeros, ...meses]);  // [1, 2, 3, "enero", "febrero", "marzo"]</li>
+                </ol>
+            </div>
+
+            <h2>6. Convertir cadenas de caracteres en arrays</h2>
+
+            <p>Puedes utilizar el operador Spread para convertir cadenas de caracteres en arrays de caracteres, que pueden ser
+                manipulados o combinados con otros arrays usando métodos asociados a arrays.
+            </p>
+
+            <p>Ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const str = "Hello";</li>
+                    <li></li>
+                    <li>&ensp;// Spread characters of a string into an array</li>
+                    <li>&ensp;const charArray = [...str];</li>
+                    <li>&ensp;console.log(charArray); // ['H', 'e', 'l', 'l', 'o']</li>
+                </ol>
+            </div>
+
+            <h2>7. Argumentos dinámicos en funciones</h2>
+
+            <p>Podemos usar el operador Spread también en otros contextos, tales como argumentos de funciones,
+               para pasar valores dinámicamente a una función o constructor.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let algunosNumeros = [12, 56, 88];</li>
+                    <li></li>
+                    <li>&ensp;const addNumeros = (a, b, c) => {</li>
+                    <li>&emsp;&emsp; console.log(a + b + c);</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;addNumeros(...algunosNumeros);  // 156</li>
+                </ol>
+            </div>
+
+            <h2>8. Unir o clonar objetos</h2>
+
+            <p>Puedes usar el operador Spread para añadir las propiedades de un objeto dentro de otro objeto.
+               Esto es útil para unir o clonar objetos, creando un nuevo objeto con sus propiedades sobreescritas
+               o bien extrayendo de un objeto unas propiedades específicas.</p>
+
+            <h3>8.1 Ejemplo 1: Unión de objetos</h3>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const obj1 = { a: 1, b: 2 };</li>
+                    <li>&ensp;const obj2 = { b: 3, c: 4 };</li>
+                    <li></li>
+                    <li>&ensp;// Merge objects using spread operator</li>
+                    <li>&ensp;const mergedObj = { ...obj1, ...obj2 };</li>
+                    <li>&ensp;console.log(mergedObj); // { a: 1, b: 3, c: 4 }</li>
+                </ol>
+            </div>
+
+            <h3>8.2 Ejemplo 2: Clonado de objetos</h3>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const usuario = {</li>
+                    <li>&emsp;&emsp; nombre: 'Alex',</li>
+                    <li>&emsp;&emsp; apellido: 'Tomás',</li>
+                    <li>&emsp;&emsp; edad: 40</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const copiaDeUsuario = {...usuario};</li>
+                    <li>&ensp;console.log(copiaDeUsuario);</li>
+                    <li>&ensp;// Resultado</li>
+                    <li>&ensp;// Object {</li>
+                    <li>&emsp;&emsp; nombre: "Alex",</li>
+                    <li>&emsp;&emsp; apellido: "Tomás",</li>
+                    <li>&emsp;&emsp; edad: 40</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <h2>9. Concatenar y añadir nuevas propiedades a un objeto</h2>
+
+            <p>Tal como se puede hacer con los arrays, pasa con los objetos:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const coche = {</li>
+                    <li>&emsp;&emsp; marca: 'Peugeot',</li>
+                    <li>&emsp;&emsp; modelo: '207'</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const caracteristicas = {</li>
+                    <li>&emsp;&emsp; color: 'Azul',</li>
+                    <li>&emsp;&emsp; cv: '115'</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const automovil = {...coche, ...caracteristicas};</li>
+                    <li>&ensp;console.log(automovil);</li>
+                    <li>&ensp;// Resultado</li>
+                    <li>&ensp;// Object {</li>
+                    <li>&emsp;&emsp; marca: "Peugeot",</li>
+                    <li>&emsp;&emsp; modelo: "207",</li>
+                    <li>&emsp;&emsp; color: "Azul",</li>
+                    <li>&emsp;&emsp; cv: "115"</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const extras = {...automovil, 'aacc': true };</li>
+                    <li>&ensp;console.log(extras);</li>
+                    <li>&ensp;// Resultado</li>
+                    <li>&ensp;// Object {</li>
+                    <li>&emsp;&emsp; marca: "Peugeot",</li>
+                    <li>&emsp;&emsp; modelo: "207",</li>
+                    <li>&emsp;&emsp; color: "Azul",</li>
+                    <li>&emsp;&emsp; cv: "115",</li>
+                    <li>&emsp;&emsp; aacc: true</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <h2>10. Combinando el operador Spread con el parámetro "rest"</h2>
+
+            <p>El operador Spread puede utilizarse con otras características del JavaScript moderno, tales
+               como <a href="deconstruccion.html" class="subrayado">deconstrucción</a> de arrays y objetos, permitiendo poderosas
+               técnicas de programación funcional. Te permite extraer y manipular elementos de arrays o propiedades de objetos con
+               una sintaxis concisa y expresiva.</p>
+
+            <p>Ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const numbers = [1, 2, 3, 4, 5];</li>
+                    <li>&ensp;const [first, second, ...rest] = numbers;</li>
+                    <li></li>
+                    <li>&ensp;console.log(first); // 1</li>
+                    <li>&ensp;console.log(second); // 2</li>
+                    <li>&ensp;console.log(rest); // [3, 4, 5]</li>
+                </ol>
+            </div>
+
+            <h2>11. Bibliografía</h2>
+            <ul>
+                <li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax</li>
+                <li>https://dev.to/alextomas80/el-operador-spread-en-javascript-12hc</li>
+                <li>https://kinsta.com/knowledgebase/spread-operator-javascript/</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>
+        
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promesas</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué es una promesa en JS?</h1>
+
+            <h2>1.Introducción</h2>
+
+            <p></p>Una promesa (promise en inglés) es un objeto que representa la terminación con éxito o el fracaso
+               de una operación asíncrona. Dado que la mayoría de las personas consumen promises ya creadas,
+               esta guía explicará primero cómo consumirlas, y luego cómo crearlas.
+
+            <h2>2. ¿Qué son las funciones asíncronas?</h2>
+
+            <p>El término asíncrono se refiere a una situación en la que dos o más eventos no ocurren al mismo tiempo. O en términos más
+               sencillos, pueden suceder varias cosas relacionadas sin esperar a que se complete la acción anterior.</p>
+   
+            <p>En JavaScript, las funciones asíncronas son muy importantes debido a la naturaleza de un solo subproceso de JavaScript.
+               Con la ayuda de funciones asíncronas, el bucle de eventos de JavaScript puede encargarse de otras cosas cuando la función
+               solicita algún otro recurso.</p>
+                   
+            <p>Usarías un código asíncrono, por ejemplo, en las API que obtienen un archivo de la red, cuando accedes a una base de datos
+               y devuelves datos de ella, cuando accedes a una transmisión de video desde una cámara web, o si estás transmitiendo la pantalla
+               a un headset de realidad virtual.</p>
+
+            <h2>3. Cómo funcionan las promesas en JavaScript</h2>
+               
+            <p>El objeto Promise en JavaScript representa una operación asíncrona (y su valor resultante) que eventualmente
+                se completará (o fallará).</p>
+
+            <p>Esencialmente, una promesa es un objeto devuelto al cual se adjuntan funciones callback, en lugar de pasar callbacks
+               a una función.</p>
+
+            <p>Una promesa está en uno de estos estados:</p>
+
+            <ul>
+                <li>pending (pendiente): estado inicial, ni cumplido ni rechazado.</li>
+                <li>fulfilled (cumplida): lo que significa que la operación se completó con éxito.</li>
+                <li>rejected (rechazada): lo que significa que la operación falló.</li>
+            </ul>
+               
+            <p>Una promesa pendiente puede cumplirse con un valor o rechazarse con un motivo (error).
+               Cuando ocurre cualquiera de estas opciones, se llama a los controladores asociados en cola
+               por el método then de una promesa. Si la promesa ya se ha cumplido o rechazado cuando se adjunta
+               un manejador correspondiente, se llamará al manejador, por lo que no existe una condición de carrera
+               entre la finalización de una operación asíncrona y la conexión de sus manejadores.</p>
+               
+            <p>Como los métodos Promise.prototype.then() y Promise.prototype.catch() devuelven promesas,
+               se pueden encadenar.</p>
+
+            <img src="/images/promises.png" alt="promises" width="40%" height="auto">
+
+            <p>Considera la función crearArchivoAudioAsync(), la cual genera de manera asíncrona un archivo
+               de sonido de acuerdo a un archivo de configuración, y dos funciones callback, una que es llamada 
+               si el archivo de audio es creado satisfactoriamente, y la otra que es llamada si ocurre un error.
+               El código podría verse de la siguiente forma:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function exitoCallback(resultado) {</li>
+                    <li>&emsp;&emsp; console.log("Archivo de audio disponible en la URL " + resultado);</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;function falloCallback(error) {</li>
+                        <li>&emsp;&emsp; console.log("Archivo de audio disponible en la URL " + resultado);</li>
+                        <li>&ensp;}</li>
+                    <li>&ensp;crearArchivoAudioAsync(audioConfig, exitoCallback, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>Las funciones modernas devuelven un objeto promise al que puedes adjuntar funciones de retorno
+               (callbacks). Si crearArchivoAudioAsync fuera escrita de manera tal que devuelva un objeto promise,
+               usarla sería tan simple como esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;crearArchivoAudioAsync(audioConfig).then(exitoCallback, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>Lo cual es la versión corta de:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const promesa = crearArchivoAudioAsync(audioConfig);</li>
+                    <li>&ensp;promesa.then(exitoCallback, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>Llamamos a esto una llamada a función asíncrona. Esta convención tiene varias ventajas.
+               Exploraremos cada una de ellas.</p>
+
+            <h2>4. Garantías</h2>
+
+            <p>A diferencia de las funciones callback pasadas al "viejo estilo", una promesa viene con algunas garantías:</p>
+            <ul>
+                <li>Las funciones callback nunca serán llamadas antes de la terminación de la ejecución actual
+                    del bucle de eventos de JavaScript.</li>
+                <li>Las funciones callback añadidas con then() incluso después del éxito o fracaso de la
+                    operación asíncrona serán llamadas como se mostró anteriormente.</li>
+                <li>Múltiples funciones callback pueden ser añadidas llamando a then() varias veces.
+                    Cada una de ellas es ejecutada una seguida de la otra, en el orden en el que fueron insertadas.</li>
+                <li>Una de las grandes ventajas de usar promises es el encadenamiento, explicado a continuación.</li>
+            </ul>
+
+            <h2>5. Encadenamiento</h2>
+
+            <p>Una necesidad común es el ejecutar dos o más operaciones asíncronas seguidas, donde cada operación
+            posterior se inicia cuando la operación previa tiene éxito, con el resultado del paso previo.
+            Logramos esto creando una cadena de objetos promises.</p>
+
+            <p>Aquí está la magia: la función then() devuelve una promesa nueva, diferente de la original:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const promesa = hazAlgo();</li>
+                    <li>&ensp;const promesa2 = promesa.then(exitoCallback, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>O bien así:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let promesa2 = hazAlgo().then(exitoCallback, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>Esta segunda promesa (promesa2) representa no sólo la terminación de hazAlgo(),
+            sino también de exitoCallback o falloCallback que pasaste, las cuales pueden ser otras funciones
+            asíncronas devolviendo una promesa. Cuando ese es el caso, cualquier función callback añadida a
+            promesa2 se queda en cola detrás de la promesa devuelta por exitoCallback o falloCallback.</p>
+
+            <p>Básicamente, cada promesa representa la terminación de otro paso (asíncrono on no) en la cadena.</p>
+
+            <p>En el pasado, hacer varias operaciones asíncronas en fila conduciría a la clásica pirámide
+               de funciones callback:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp; hazAlgo(function(resultado) {</li>
+                    <li>&emsp;&emsp; hazAlgoMas(resultado, function(nuevoResultado) {</li>
+                    <li>&emsp;&emsp;&emsp; hazLaTerceraCosa(nuevoResultado, function(resultadoFinal) {</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; console.log('Obtenido el resultado final: ' + resultadoFinal)</li>
+                    <li>&emsp;&emsp;&emsp; }, falloCallback);</li>
+                    <li>&emsp;&emsp; }, falloCallback);</li>
+                    <li>&ensp;}, falloCallback);</li>
+                </ol>
+            </div>
+
+            <p>Con las funciones modernas, adjuntamos nuestras functiones callback a las promesas devueltas,
+               formando una cadena de promesa:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;hazAlgo()</li>
+                    <li>&emsp;&emsp; .then(function (resultado) {</li>
+                    <li>&emsp;&emsp;&emsp; return hazAlgoMas(resultado);</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; .then(function (nuevoResultado) {</li>
+                    <li>&emsp;&emsp;&emsp; return hazLaTerceraCosa(nuevoResultado);</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; then(function (resultadoFinal) {</li>
+                    <li>&emsp;&emsp;&emsp; console.log("Obtenido el resultado final: " + resultadoFinal);</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; .catch(falloCallback);</li>
+                                                
+                </ol>
+            </div>
+
+            <p>El método .then() toma hasta dos argumentos; el primer argumento es una función de devolución
+               de llamada (callback) para el caso resuelto de la promesa, y el segundo argumento es una función
+               de devolución de llamada para el caso rechazado. Cada .then() devuelve un objeto de promesa recién
+                generado, que opcionalmente se puede usar para encadenar.</p>
+            
+            <p>El procesamiento continúa hasta el siguiente eslabón de la cadena incluso cuando .then() carece
+               de una función de devolución de llamada que devuelve un objeto Promise. Por lo tanto, una cadena puede
+               omitir con seguridad cada función de devolución de llamada de rechazo hasta el .catch() final.</p>
+
+            <p>Tratar una promesa rechazada en cada .then() tiene consecuencias más adelante en la cadena de
+               promesas. A veces no hay otra opción, porque un error debe tratarse de inmediato. En tales casos,
+               debemos generar un error de algún tipo para mantener el estado de error en la cadena. Por otro lado,
+               en ausencia de una necesidad inmediata, es más sencillo omitir el manejo de errores hasta una sentencia
+               .catch() final. Un .catch() es realmente solo un .then() sin una ranura de argumento para una función
+                de devolución de llamada para el caso en que se resuelva la promesa.</p>
+
+            <p>Los argumentos "then" son opcionales, y catch(falloCallBack) es un atajo para then(null,
+               falloCallBack).</p>
+            <p>Es posible que veas esto expresado con funciones de flecha:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;hazAlgo()</li>
+                    <li>&emsp;&emsp; .then((resultado) => hazAlgoMas(resultado))</li>
+                    <li>&emsp;&emsp; .then((nuevoResultado) => hazLaTerceraCosa(nuevoResultado))</li>
+                    <li>&emsp;&emsp; .then((resultadoFinal) => {</li>
+                    <li>&emsp;&emsp;&emsp; console.log(`Obtenido el resultado final: ${resultadoFinal}`);</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; .catch(falloCallback);</li>                             
+                </ol>
+            </div>
+
+            <p>La condición de terminación de una promesa determina el estado "establecido" de la próxima
+               promesa en la cadena. Un estado "resuelto" indica una finalización exitosa de la promesa, mientras
+               que un estado "rechazado" indica una falta de éxito. El valor de retorno de cada promesa resuelta
+               en la cadena se pasa al siguiente .then(), mientras que el motivo del rechazo se pasa a la siguiente
+               función de manejo de rechazo en la cadena.</p>
+
+            <p><span class="negrita">Importante</span>: Devuelve siempre resultados, de otra forma las funciones
+               callback no se encadenarán, y los errores no serán capturados.</p>
+
+            <h2>6. Encadenar después de una captura</h2>
+
+            <p>Es posible encadenar después de un fallo - por ejemplo: un catch- lo que es útil para lograr
+               nuevas acciones incluso después de una acción fallida en la cadena. Lea el siguiente ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;new Promise((resolver, rechazar) => {</li>
+                    <li>&emsp;&emsp; console.log("Inicial");</li>
+                    <li></li>
+                    <li>&emsp;&emsp; resolver();</li>
+                    <li>&emsp;})</li>
+                    <li>&emsp;&emsp;&emsp; .then(() => {</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; throw new Error("Algo falló");</li>
+                    <li></li>
+                    <li>&emsp;&emsp;&emsp;&emsp; console.log("Haz esto");</li>
+                    <li>&emsp;&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp;&emsp; .catch(() => {</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; console.log("Haz aquello");</li>
+                    <li>&emsp;&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp;&emsp; .then(() => {</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; console.log("Haz esto sin que importe lo que sucedió antes");</li>
+                    <li>&emsp;&emsp;&emsp; })</li>                            
+                </ol>
+            </div>
+
+            <p>Esto devolverá el siguiente texto:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;Inicial</li>
+                    <li>&ensp;Haz aquello</li>
+                    <li>&ensp;Haz esto sin que importe lo que sucedió antes</li>                      
+                </ol>
+            </div>
+
+            <p>Note que el texto "Haz esto" no es escrito porque el error "Algo falló" causó un rechazo.</p>
+
+            <h2>7. Propagación de errores</h2>
+
+            <p>Tal vez recuerdes haber visto falloCallback tres veces en la pirámide en un ejemplo anterior,
+               en comparación con sólo una vez al final de la cadena de promesas:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;hazAlgo()</li>
+                    <li>&emsp;&emsp; .then((resultado) => hazAlgoMas(resultado))</li>
+                    <li>&emsp;&emsp; .then((nuevoResultado) => hazLaTerceraCosa(nuevoResultado))</li>
+                    <li>&emsp;&emsp; .then((resultadoFinal) => {</li>
+                    <li>&emsp;&emsp;&emsp; console.log(`Obtenido el resultado final: ${resultadoFinal}`);</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; .catch(falloCallback);</li>                             
+                </ol>
+            </div>
+
+            <p>Básicamente, una cadena de promesas se detiene si hay una excepción, y recorre la cadena buscando
+               manejadores de captura. Lo siguiente está mucho más adaptado a la forma de trabajo del código
+               síncrono:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;try {</li>
+                    <li>&emsp;&emsp; let resultado = syncHazAlgo();</li>
+                    <li>&emsp;&emsp; let nuevoResultado = syncHazAlgoMas(resultado);</li>
+                    <li>&emsp;&emsp; let resultadoFinal = syncHazLaTerceraCosa(nuevoResultado);</li>
+                    <li>&emsp;&emsp; console.log(`Obtenido el resultado final: ${resultadoFinal}`);</li>
+                    <li>&emsp;} catch (error) {</li>
+                    <li>&emsp;&emsp; falloCallback(error);</li>
+                    <li>&emsp;}</li>                          
+                </ol>
+            </div>
+            
+            <p>Esta simetría con el código síncrono culmina con la mejora sintáctica async/await en ECMASCript 2017:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function foo() {</li>
+                    <li>&emsp;&emsp;try {</li>
+                    <li>&emsp;&emsp;&emsp; let resultado = await hazAlgo();</li>
+                    <li>&emsp;&emsp;&emsp; let nuevoResultado = await hazAlgoMas(resultado);</li>
+                    <li>&emsp;&emsp;&emsp; let resultadoFinal = await hazLaTerceraCosa(nuevoResultado);</li>
+                    <li>&emsp;&emsp;&emsp; console.log(`Obtenido el resultado final: ${resultadoFinal}`);</li>
+                    <li>&emsp;} catch (error) {</li>
+                    <li>&emsp;&emsp; falloCallback(error);</li>
+                    <li>&emsp;}</li>                          
+                </ol>
+            </div>
+
+            <p>Se construye sobre promesas, por ejemplo, hazAlgo() es la misma función que antes.
+            Puedes leer más sobre async/await <a class="subrayado" href="async-await.html">aqui</a>.</p>
+
+            <p>Las promesas resuelven un fallo fundamental de la pirámide de funciones callback,
+            capturando todos los errores, incluso excepciones lanzadas y errores de programación.
+            Esto es esencial para la composición funcional de operaciones asíncronas.</p>
+
+            <h2>8. Resumen</h2>
+
+            <p>Si un controlador .then (o catch/finally, no importa) devuelve una promesa, el resto de la cadena espera hasta que ésta
+               quede establecida (sea resuelta o rechazada). Cuando lo hace, su resultado (o error) pasa más allá.</p>
+
+            <p>Aquí hay una imagen completa:</p>
+
+            <img src="/images/flujo-promesas.png" alt="flujo promesas" width="40%" height="auto">
+
+            <h2>9. Ejercicio</h2>
+
+            <p>Promesa: then versus catch</p>
+
+            <p>¿Son iguales estos fragmentos de código? En otras palabras, ¿se comportan de la misma manera en cualquier
+               circunstancia, para cualquier función de controlador?</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;promise.then(f1).catch(f2);</li>
+                </ol>
+            </div>
+
+            versus
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;promise.then(f1, f2);</li>
+                </ol>
+            </div>
+
+            <h2>10. Solución</h2>
+            
+            <p>La respuesta corta es: no, no son iguales:</p>
+
+            <p>La diferencia es que si ocurre un error en f1, entonces aqui es manejado por .catch:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;promise</li>
+                    <li>&emsp;&emsp; .then(f1)</li>
+                    <li>&emsp;&emsp; .catch(f2);</li>
+                </ol>
+            </div>
+
+            <p>…Pero no aquí:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;promise</li>
+                    <li>&emsp;&emsp; .then(f1, f2)</li>
+                </ol>
+            </div>
+
+            <p>Esto se debe a que se pasa un error por la cadena y en la segunda pieza del código no hay una cadena debajo de f1.</p>
+
+            <p>En otras palabras, .then pasa los resultados/errores al siguiente .then/catch. Entonces, en el primer ejemplo,
+               hay un catch debajo, y en el segundo no lo hay, por lo que el error no se trata.</p>
+
+            <h2>11. Bibliografía</h2>
+            <ul>
+                <li>https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise</li>
+                <li>https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises</li>
+                <li>https://es.javascript.info/promise-chaining</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>    
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

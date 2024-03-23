@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tipo de bucles</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué tipo de bucles hay en JS?</h1>
+            <h2>Introducción</h2>
+            <p>Un bucle o ciclo, en programación, es una secuencia de instrucciones de código que se ejecuta repetidas veces,
+               hasta que la condición asignada a dicho bucle deja de cumplirse.</p>
+        
+            <p>Existen diferentes tipos de bucles en JavaScript:</p>
+            <ul>
+                <li>for</li>
+                <li>while</li>
+                <li>do...while</li>
+                <li>for...in</li>
+                <li>for...of</li>
+            </ul>
+
+            <p>Los bucles "for", "while" y "do...while" se repiten mientras que la condición asignada a dicho bucle es verdadera.</p>
+            
+            <img src="/images/bucle-for.jpg" alt="bucle-for" width="40%" height="auto">
+
+            <p>Sin embargo, los bucles "for...in" y "for...of" iteran sobre los elementos de un objeto o de un array.</p>
+
+            <img src="/images/bucle-for-in.jpg" alt="bucle for-in" width="40%" height="auto">
+
+            <p>En los siguientes apartados explicamos cada caso de forma más detallada.</p>
+
+            <h2>1. Bucles <span class="negrita">for</span></h2>
+            <p>Es un tipo de bucle cuya ejecución se repite mientras que su condición se evalué como verdadera (true). Es similar a los ciclos for de Java, PHP, C# y otro lenguajes de programación. Además, este tipo de bucle es el más empleado en la programación.</p>
+            <h3>1.1 Sintaxis</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;for ([expresiónInicial]; [expresiónCondicional]; [expresiónDeActualización]) {</li>
+                    <li>&emsp; &emsp; cuerpoBucle</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            <ul>
+                <li>expresiónInicial: Esta expresión indica la condición para el inicio del ciclo. Usualmente es la declaración de una variable numérica.</li>
+                <li>expresiónCondicional: Esta expresión es la condición que se debe mantener para que siga ejecutando el ciclo.</li>
+                <li>expresiónDeActualización: Esta expresión cambia el valor de la variable numérica indicada en la [expresionInicial]</li>
+                <li>cuerpoBucle: Es el conjunto de instrucciones que se ejecutan durante cada iteración del bucle.</li>
+            </ul>
+            <h3>1.2 Ejemplo</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;for(var x = 1; x <= 6 ; x++) {</li>
+                    <li>&emsp; &emsp; console.log(x);</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            <p>El resultado es que se imprimirán en la consola los números del 1 al 6, tal como se ve en la
+                siguiente imagen:</p>
+            <img src="/images/for.png" alt="for" width="25%" height="auto">
+            <p>La variable x se utiliza para que se inicie, mantenga y finalice el bucle.</p>
+            <p>El bucle tiene las siguientes partes:</p>
+            <ul>
+                <li>expresiónInicial (<span class="code-family">var x = 1</span>): Consiste en la declaración de la variable x con el valor
+                    inicial 1 para que comience el bucle.</li>
+                <li>expresiónCondicional (<span class="code-family">x <= 6</span>): Consiste en la evaluación la variable x para
+                    que ejecute la iteración. En este ejemplo, la variable x condiciona que el bucle
+                    se ejecute mientras que dicha variable sea menor o igual a 6. Como se explicó este bucle se mantiene
+                    hasta que la condición llegue a un valor falso (false). El valor de la variable x se evalúa antes que
+                    inicie cada ciclo.</li>
+                <li>expresiónDeActualización (<span class="code-family">x++</span>): En esta declaración se actualiza el valor de la variable x.
+                    En este ejemplo por cada iteración el valor de la variable x se incrementa en 1.</li>
+                <li>cuerpoBucle (<span class="code-family">console.log(x);</span>)</li>
+            </ul>
+
+            <h2>2. Bucles <span class="negrita">while</span></h2>
+            
+            <p>El bucle "while" es equivalente al bucle "for". Es recomendable utilizar "for" siempre que se pueda porque con "while"
+            se corre el peligro de crear un bucle infinito si no se define bien la condición que controla dicho bucle.</p>
+            
+            <h3>2.1 Sintaxis</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;while (expresionCondicional) {</li>
+                    <li>&emsp; &emsp; cuerpoBucle</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            
+            La estructura se describe de la siguiente manera:
+            <ul>
+                <li>expresiónCondicional: Es la expresión que condiciona la ejecución de la iteración del bucle. Se repite mientras
+                    la condición es verdadera.</li>
+                <li>cuerpoBucle: Es el conjunto de instrucciones que se ejecutan durante cada iteración.</li>
+            </ul>
+
+            <p >Nota: usar la sentencia "break" para terminar un bucle antes de que la condición se evalúe a "false"</p>
+            
+            <h3>2.2 Ejemplo</h3>
+            
+            En este ejemplo se evaluará la variable x como expresión condicional para la ejecución del bucle.
+            Cuya variable incrementara dentro del cuerpo del bucle.
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let x = 1;</li>
+                    <li></li>
+                    <li>&ensp;while(x < 5) {</li>
+                    <li>&emsp; &emsp; console.log(x);</li>
+                    <li>&emsp; &emsp; x += 1;</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            
+            <p>El código tiene las siguientes partes:</p>
+            <ul>
+                <li>Declaración Variable (<span class="code-family">let x = 1</span>): Se declara y se inicializa la variable fuera del bucle</li>
+                <li>Evaluación de expresiónCondicional (<span class="code-family">while(x < 5)</span>): mientras se cumpla la condición se repetirá el bucle.</li>
+                <li>Mostramos en consola el valor de la variable (<span class="code-family">console.log(x)</span>)</li>
+                <li>Actualizamos el valor de la variable (<span class="code-family">x += 1</span>)</li>
+            </ul>
+
+            <p>El resultado será el siguiente:</p>
+            
+            <img src="/images/bucle-while.png" alt="bucle-while" width="25%" height="auto">
+
+            <h2>3. Bucles <span class="negrita">do...while</span></h2>
+
+            <p>Es similar al bucle "while" explicado en el apartado anterior. Se ejecuta hasta que la condición sea falsa (false).
+               La diferencia se basa en que la evaluación de la condición se realiza al final de cada iteración, lo que garantiza
+               que el bloque de sentencias dentro del bucle se ejecutará al menos una vez.</p>
+            
+            <h3>3.1 Sintaxis</h3>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;do {</li>
+                    <li>&emsp; &emsp; cuerpoBucle</li>
+                    <li>&ensp;} while (expresionCondicional);</li>
+                </ol>
+            </div>
+
+            <p>La estructura se describe de la siguiente manera:</p>
+            <ul>
+                <li>do : indica el comienzo del bucle</li>
+                <li>cuerpoBucle: Es el conjunto de instrucciones que se ejecutan durante cada iteración.</li>
+                <li>expresiónCondicional: Es la expresión que condiciona la ejecución de la iteración del bucle.</li>
+            </ul>
+
+            <h3>3.2 Ejemplo</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let i = 1;</li>
+                    <li>&ensp;do {</li>
+                    <li>&emsp; &emsp; console.log(i);</li>
+                    <li>&emsp; &emsp; i += 1;</li>
+                    <li>&ensp;} while(i < 5);</li>
+                </ol>
+            </div>
+
+            <p>El código tiene las siguientes partes:</p>
+            <ul>
+                <li>Declaración Variable (<span class="code-family">let i = 1</span>): Se declara y se asigna un valor a la variable fuera del bucle.</li>
+                <li>Mostramos en pantalla el valor actual de la variable (<span class="code-family">console.log(i)</span>)</li>
+                <li>Actualizamos el valor de la variable (<span class="code-family">i += 1</span>)</li>
+                <li>Evaluación de expresiónCondicional (<span class="code-family">while(x < 5)</span>): mientras se cumpla la condición se repetirá el bucle.</li>
+            </ul>
+
+           <p>El resultado es el siguiente:</p>
+
+           <img src="/images/do-while.png" alt="bucle-do-while" width="25%" height="auto">
+
+            <h2>4. Bucles <span class="negrita">for...in</span></h2>
+
+            <p>El "bucle for...in" difiere del "bucle for" explicado en el apartado anterior en que recorre los elementos
+               de una lista (array) o las propiedades de un objeto. Es parecido a lo que en otros lenguajes tenemos en el
+               bucle forEach (Javascript también tiene el forEach pero es solo para arrays y no es un bucle sino un método de arrays,
+               que sirve para iterar, pero no es una estructura de control como tal).</p>
+            
+            <h3>4.1 Sintaxis</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;for (variable in objeto|array) {</li>
+                    <li>&emsp; &emsp; cuerpoBucle</li>
+                    <li>&ensp;}</li>      
+                </ol>
+            </div>
+            
+            <ul>
+                <li>variable: representa el índice cada uno de los elementos de una lista o el índice de las propiedades
+                    de un objeto.</li>
+                <li>objeto|array: puede ser un objeto con sus respectivas propiedades o una lista (array) y sus elementos.</li>
+                <li>cuerpoBucle: es el conjunto de instrucciones que se ejecutan durante cada iteración del bucle.</li>
+            </ul>
+             
+            <h3>4.2 Ejemplo 1</h3>
+            <p>El bucle recorrerá un objeto, llamado "person", para obtener el nombre de sus claves
+               y sus respectivos valores y mostrarlos en la consola.</p>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var person = {</li>
+                    <li>&emsp; &emsp; firstName: "Williams",</li>
+                    <li>&emsp; &emsp; lastName: "Morales",</li>
+                    <li>&emsp; &emsp; age: 36</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;for(key in person){</li>
+                    <li>&emsp; &emsp; console.log(key); // Obtiene cada clave del objeto</li>
+                    <li>&emsp; &emsp; console.log(person[key]); // Obtiene cada valor de cada clave del objeto</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            
+            <p>En este ejemplo se recorre el objeto "person"" para obtener el nombre de sus claves y sus respectivos valores.</p>
+            <img src="/images/players.png" alt="players" width="40%" height="auto">
+            <p>El proceso que se ha seguido es el siguiente:</p>
+            <ul>
+                <li>Declaración Objeto (<span class="code-family">var person = {}</span>): se declara el objeto "person" con tres pares de clave-valor.</li>
+                <li>Ciclo de Recorrido (<span class="code-family">for(key in person)</span>): representa el recorrido de la variable key en el objeto "person".
+                    La variable "key"" contiene el nombre de la clave del objeto por cada iteración.</li>
+                <li>Mostrar la clave del objeto (<span class="code-family">console.log(key)</span>): se obtiene el nombre de la clave por iteración.</li>
+                <li>Mostrar el valor de la clave del objeto (<span class="code-family">console.log(person[key])</span>): se obtiene el valor asociado a la clave.</li>
+            </ul>
+            
+            <h3>4.3 Ejemplo 2</h3>            
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var countries=[];</li>
+                    <li></li>
+                    <li>&ensp;countries.push('Peru');</li>
+                    <li>&ensp;countries.push('Colombia');</li>
+                    <li>&ensp;countries.push('Chile');</li>
+                    <li>&ensp;countries.push('Brasil');</li>
+                    <li></li>
+                    <li>&ensp;for(index in countries){</li>
+                    <li>&emsp; &emsp; console.log(index); // mostrar por consola el índice</li>
+                    <li>&emsp; &emsp; console.log(countries[index]); // mostrar por consola el valor correspondiente al índice</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            <p>En este ejemplo se recorre la lista (array) llamada "countries" para obtener el índice del array y
+               los valores correspondientes según su índice.</p>
+            <img src="/images/countries.png" alt="countries" width="40%" height="auto">
+            
+            <p>El proceso del ejemplo anterior es el siguiente:</p>
+            <ul>
+                <li>Declaración de la lista (array) sobre la que vamos a iterar (<span class="code-family">var Paises = []</span>)</li>
+                <li>Cargamos los elementos en la lista con el método push (<span class="code-family">countries.push('Peru')</span>)</li>
+                <li>Ciclo de Recorrido (<span class="code-family">for(index in countries)</span>): representa el recorrido de la variable
+                    index en el array countries. La variable index contiene el índice del array countries por cada iteración.</li>
+                <li>Mostramos el índice (<span class="code-family">console.log(index)</span>): se obtiene el índice del array,
+                    comenzando desde cero.</li>
+                <li>Mostramos el valor del array (<span class="code-family">console.log(countries[index])</span>): se obtiene el valor del array según el índice.</li>
+            </ul>
+            
+            <h2>5. Bucles <span class="negrita">for...of</span></h2>
+            <p>Este bucle recorre los elementos de un objeto iterable, como son: Arrays, Strings, Maps, NodeLists, etc.
+               Pero no incluye las propiedades de un objeto y sus valores.</p>
+            
+            <h3>5.1 Sintaxis</h3>
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;for (variable of objetoIteracion) {</li>
+                    <li>&emsp; &emsp; cuerpoBucle</li>
+                    <li>&ensp;}</li>      
+                </ol>
+            </div>
+
+            <p>La estructura se describe de la siguiente manera:</p>
+            <ul>
+                <li>variable: es la expresión que representa un elemento del objetoIterable .</li>
+                <li>objetoIteracion: es un objeto de iteración (array, map, etc.).</li>
+                <li>cuerpoBucle: es el conjunto de instrucciones que se ejecutan durante cada iteración del bucle.</li>
+            </ul>
+
+            <h3>5.2 Ejemplo</h3>
+            <p>En este ejemplo el bucle recorrerá un objeto de tipo array llamada "empleado" para obtener
+            cada uno de sus elementos.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var empleado=['Williams', 'Morales', 36, 1500];</li>
+                    <li>&ensp;empleado.pais = "Peru";</li>
+                    <li></li>
+                    <li>&ensp;for(let item of Empleado){
+                    <li>&emsp; &emsp; console.log(item);</li>   
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>El resultado se muestra en la siguiente imagen:</p>
+            <img src="/images/bucle-for-of.png" alt="bucle-for-of" width="40%" height="auto">
+   
+            <p>El proceso es el siguiente</p>
+            <ul>
+                <li>Declaración del array: (<span class="code-family">var empleado=['Williams', 'Morales', 36, 1500]</span>)</li>
+                <li>Declaración de Propiedad (<span class="code-family">empleado.pais = "Peru"</span>): al array se le añade un elemento, que es un objeto,
+                    con una propiedad y valor.</li>
+                <li>Ciclo de Recorrido (<span class="code-family">for(let item of Empleado)</span>): Representa el recorrido de la variable ítem en el array "empleado".
+                    La variable ítem contiene el elemento del array.</li>
+                <li>Mostramos el elemento(<span class="code-family">console.log(item)</span>): Se obtiene el elemento del array por cada iteración. Pero la declaración ítem no muestra
+                     la propiedad y/o su valor, correpondientes al objeto añadido al final del array.</li>
+            </ul>
+
+            <h2>6. Ejercicios</h2>
+
+            <h3>6.1 Bucles FOR</h3>
+
+            <h4>🔢 Números impares</h3>
+
+            <p>Crear un programa que muestre en consola los números impares entre el 0 y el 20.</p>
+
+            <h4>📀 Playlist</h4>
+
+            <p>Crear un programa que pida al usuario ingresar el nombre de una playlist y cuántas canciones desea agregar a la misma.
+            Luego debe ir pidiendo agregar la cantidad de canciones elegidas de a una. Se debe ir mostrando la cantidad de canciones que quedan
+            por agregar y la playlist con los temas hasta el momento a medida que se va a actualizando. Al finalizar mostrar un mensaje con el
+            nombre de la playlist y la lista de canciones.</p>
+
+            <h4>🔍 Número mayor o menor</h4>
+
+            <p>Crear un programa que pregunte si se desea buscar el mayor o el menor número de un conjunto. Luego, preguntar entre cuántos
+               se desea buscar. Ir pidiendo ingresar uno por uno la cantidad de números que se eligió, y al finalizar mostrar el número mayor
+               o menor de todos los ingresados según el elegido.</p>
+
+            <h4>❗️ Factorial</h4>
+
+            <p>Crear un programa que pida ingresar un número, y muestre su factorial. Este se calcula multiplicando el mismo número y todos
+               los números que le anteceden hasta el 1. Por ejemplo: 4 ⇒ 4 * 3 * 2 * 1 = 24</p>
+
+            <h3>6.2 Bucles WHILE</h2>
+
+            <h4>🔐 Múltiples intentos</h4>
+
+            <p>Crear un programa que pida ingresar usuario y contraseña. El programa debe permitir hasta 3 intentos, cuando el usuario
+               y/o la contraseña sean incorrectos. Si se ingresa correctamente ambos antes de 3 intentos erróneos, debe mostrar un mensaje de
+               bienvenida. Si se ingresan 3 intentos erróneos, debe mostrar un mensaje de error y terminar el programa. El usuario y la contraseña
+               ya deben estar guardadas en variables.</p>
+
+            <h4>💲Cara o cruz</h4>
+
+            <p>Crear un programa que permita escoger entre cara o cruz. El programa luego debe generar un resultado aleatorio y mostrar
+               si se acertó o no. El programa debe mostrar en cada vuelta cuántas rondas seguidas acertadas van, y si en algún momento se falla,
+               reiniciar el contador a 0. También debe llevar una cuenta de la cantidad máxima de rondas seguidas que se hizo sin errar.
+               Cuando se ingresa la palabra SALIR, en vez de CARA o CRUZ, el programa debe mostrar la cantidad máxima de rondas seguidas
+               acertadas junto a un mensaje de despedida, y terminar su ejecución.</p>
+
+            <h4>⚖️ Mayor o menor</h4>
+
+            <p>Crear un programa que elija un número al azar entre 1 y 10. El programa debe luego pedir al usuario que intente adivinar
+               el número. Por cada intento, debe avisar si el número a adivinar es mayor o menor que el número ingresado. El programa debe
+               terminar cuando se adivina el número.</p>
+
+            <h4>🤔 Adivinar palabra</h4>
+
+            <p>Crear un programa que elija una palabra al azar de un conjunto de palabras posibles, y permita al usuario intentar adivinarla.
+               Por cada intento sucesivo, el programa debe ir mostrando como pista la palabra de forma parcial, empezando con la primera letra y
+               agregando una letra a la vez. El programa debe terminar cuando se adivina la palabra o se muestran todas las letras de la misma.
+               Por ejemplo, si la palabra a adivinar es LOVELACE, mostrar como sugerencia primero L, luego LO, luego LOV, luego LOVE, luego LOVEL,
+               etc.</p>
+
+            <h4>🎾 Tenis</h4>
+
+            <p>Crear un programa para llevar la cuenta del puntaje de un partido de tenis. Debe pedir inicialmente por los nombres de las
+               jugadoras, y luego ir pidiendo el nombre de la ganadora de cada set, y mostrando el puntaje actualizado. Si alguna de las dos
+               llega a los 3 puntos, el programa debe terminar y anunciar la ganadora.</p>
+
+            <h2>7. Bibliografía</h1>
+            <ul>
+                <li>http://estilow3b.com/introduccion-bucles-javascript-for-while-do-in-of-break-continue/</li>
+                <li>https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Looping_code</li>
+                <li>https://github.com/Ada-Online-2da-Gen/ejercicios-javascript/blob/master/04-estructuras-de-control-bucles.md</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

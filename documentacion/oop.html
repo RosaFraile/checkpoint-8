@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Programación Orientada a Objetos</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué es la programación orientada a objetos?</h1>
+
+            <h2>1. Introducción</h2>
+
+            <p>En el mundo de la programación, la programación orientada a objetos (POO) ha ganado una gran
+               popularidad en los últimos años debido a su capacidad para crear aplicaciones más robustas,
+               flexibles y fáciles de mantener. Esta metodología de desarrollo se basa en la idea de que los
+               programas se pueden organizar como una colección de objetos interconectados, cada uno con su
+               propio conjunto de datos y funcionalidades.</p>
+
+            <p>La POO es un paradigma de programación, es decir, un modelo o un estilo de programación que
+               nos da unas guías sobre cómo trabajar con él. Se basa en el concepto de clases y objetos.
+               Este tipo de programación se utiliza para estructurar un programa de software en piezas simples
+               y reutilizables de planos de código (clases) para crear instancias individuales de objetos.</p> 
+
+            <p>A lo largo de la historia, han ido apareciendo diferentes paradigmas de programación.
+               Lenguajes secuenciales como COBOL o procedimentales como Basic o C, se centraban más en la
+               lógica que en los datos. Otros más modernos como Java, C# y Python, utilizan paradigmas para
+               definir los programas, siendo la POO la más popular.</p>
+               
+            <p>Con el paradigma de POO lo que buscamos es dejar de centrarnos en la lógica pura de los
+               programas, para empezar a pensar en objetos, lo que constituye la base de este paradigma.
+               Esto nos ayuda muchísimo en sistemas grandes, ya que en vez de pensar en funciones, pensamos
+               en las relaciones o interacciones de los diferentes componentes del sistema.</p>
+               
+            <p>Un programador diseña un programa de software organizando piezas de información y
+               comportamientos relacionados en una plantilla llamada clase. Luego, se crean objetos
+               individuales a partir de la plantilla de clase. Todo el programa de software se ejecuta
+               haciendo que varios objetos interactúen entre sí para crear un programa más grande.</p>
+            
+            <h2>2. Claves de la Programación Orientada a Objetos</h2>
+
+            <p>La POO se inspira en la forma en que percibimos y entendemos el mundo que nos rodea.
+               Imagina que estás construyendo un sistema de gestión de una biblioteca. En lugar de pensar
+               en términos de algoritmos y estructuras de datos, la POO te invita a considerar las entidades
+               que existen en el contexto de la biblioteca, como libros, bibliotecarios y usuarios.</p>
+               
+            <p>En este enfoque, cada una de estas entidades se convierte en un objeto, con propiedades (datos)
+               y comportamientos (funcionalidades). Por ejemplo, un objeto «Libro» puede tener atributos como el
+                título, el autor y el año de publicación, así como métodos para obtener información sobre el libro,
+                prestarlo o devolverlo a la biblioteca.</p>
+               
+            <p>La clave de la POO radica en la interacción entre estos objetos. Pueden comunicarse entre sí
+               enviándose mensajes y colaborando para lograr un objetivo común. Por ejemplo, un objeto «Usuario»
+               podría enviar un mensaje al objeto «Libro» para solicitar su préstamo, y este último respondería
+               actualizando su estado interno.</p>
+
+            <h2>3. ¿Por qué POO?</h2> 
+               
+            <p>La POO permite que el código sea reutilizable, organizado y fácil de mantener.ç
+               Sigue el principio de desarrollo de software utilizado por muchos programadores DRY
+               (Don't Repeat Yourself), para evitar duplicar el código y crear de esta manera programas
+               eficientes. Además, evita el acceso no deseado a los datos o la exposición de código propietario
+               mediante la encapsulación y la abstracción, de la que hablaremos en detalle más adelante.</p>
+
+            <h2>4. Clases, objetos e instancias</h2>
+            
+            <p>¿Cómo se crean los programas orientados a objetos? Resumiendo mucho, consistiría en hacer clases
+               y crear objetos a partir de estas clases. Las clases forman el modelo a partir del que se estructuran
+               los datos y los comportamientos.</p>
+               
+            <p>El primer y más importante concepto de la POO es la distinción entre clase y objeto.</p>
+               
+            <p>Una clase es una plantilla. Define de manera genérica cómo van a ser los objetos de un
+               determinado tipo. Por ejemplo, una clase para representar a animales puede llamarse "animal" y
+               tener una serie de atributos, como "nombre" o "edad" (que normalmente son propiedades), y una
+               serie con los comportamientos que estos pueden tener, como caminar o comer, y que a su vez se
+               implementan como métodos de la clase (funciones).</p>
+               
+            <p>Un ejemplo sencillo de un objeto, como decíamos antes, podría ser un animal.
+               Un animal tiene una edad, por lo que creamos un nuevo atributo de "edad" y, además, puede envejecer,
+               por lo que definimos un nuevo método. Datos y lógica. Esto es lo que se define en muchos programas
+               como la definición de una clase, que es la definición global y genérica de muchos objetos.</p>
+
+            <img src="/images/POO.jpg" alt="clases y objetos" width="40%" height="auto">
+
+            <p>Con la clase se pueden crear instancias de un objeto, cada uno de ellos con sus atributos
+               definidos de forma independiente. Con esto podríamos crear un gato llamado Paco, con 3 años de edad,
+               y otro animal, este tipo perro y llamado Pancho, con una de edad de 4 años. Los dos están definidos
+               por la clase animal, pero son dos instancias distintas. Por lo tanto, llamar a sus métodos puede tener
+               resultados diferentes. Los dos comparten la lógica, pero cada uno tiene su estado de forma
+               independiente.</p>
+
+            <p>Todo esto, junto con los principios que vamos a ver a continuación, son herramientas que nos
+               pueden ayudar a escribir un código mejor, más limpio y reutilizable.</p>
+
+            <h2>5. Principios de la Programación Orientada a Objetos </h2>
+            
+            <h3>5.1 La encapsulación</h3>
+            
+            <p>La encapsulación contiene toda la información importante de un objeto dentro del mismo y solo
+               expone la información seleccionada al mundo exterior. Esta propiedad permite asegurar que la
+               información de un objeto esté oculta para el mundo exterior, agrupando en una Clase las características
+               o atributos que cuentan con un acceso privado, y los comportamientos o métodos que presentan un acceso
+               público.</p>
+               
+            <p>La encapsulación de cada objeto es responsable de su propia información y de su propio estado.
+               La única forma en la que este se puede modificar es mediante los propios métodos del objeto. Por lo
+               tanto, los atributos internos de un objeto deberían ser inaccesibles desde fuera, pudiéndose modificar
+               sólo llamando a las funciones correspondientes. Con esto conseguimos mantener el estado a salvo de usos
+               indebidos o que puedan resultar inesperados.</p>
+               
+            <p>Usamos de ejemplo un coche para explicar la encapsulación. El coche comparte información pública
+               a través de las luces de freno o intermitentes para indicar los giros (interfaz pública). Por el
+               contrario, tenemos la interfaz interna, que sería el mecanismo propulsor del coche, que está oculto
+               bajo el capó. Cuando se conduce un automóvil es necesario indicar a otros conductores tus movimientos,
+               pero no exponer datos privados sobre el tipo de carburante o la temperatura del motor, ya que son
+               muchos datos, lo que confundiría al resto de conductores.</p>
+               
+            <h3>5.2 La abstracción</h3>
+            
+            <p>La abstracción es cuando el usuario interactúa solo con los atributos y métodos seleccionados
+               de un objeto, utilizando herramientas simplificadas de alto nivel para acceder a un objeto complejo.</p>
+               
+            <p>En la POO, los programas suelen ser muy grandes y los objetos se comunican mucho entre sí.
+               El concepto de abstracción facilita el mantenimiento de un código de gran tamaño, donde a lo largo del
+               tiempo pueden surgir diferentes cambios.</p>
+               
+            <p>Así, la abstracción se basa en usar cosas simples para representar la complejidad.
+               Los objetos y las clases representan código subyacente, ocultando los detalles complejos al usuario.
+               Por consiguiente, supone una extensión de la encapsulación. Siguiendo con el ejemplo del coche, no es
+               necesario que conozcas todos los detalles de cómo funciona el motor para poder conducirlo.</p>
+               
+            <h3>5.3 La herencia</h3>
+
+            <p>La herencia define relaciones jerárquicas entre clases, de forma que atributos y métodos comunes
+               puedan ser reutilizados. Las clases principales extienden atributos y comportamientos a las clases
+               secundarias. A través de la definición en una clase de los atributos y comportamientos básicos, se
+               pueden crear clases secundarias, ampliando así la funcionalidad de la clase principal y agregando
+               atributos y comportamientos adicionales.</p>
+               
+            <p>Volviendo al ejemplo de los animales, se puede usar una sola clase de animal y agregar un atributo
+               de tipo de animal que especifique el tipo de animal. Los diferentes tipos de animales necesitarán
+               diferentes métodos, por ejemplo, las aves deben poder poner huevos y los peces, nadan. Incluso cuando
+               los animales tienen un método en común, como moverse, la implementación necesitaría muchas declaraciones
+               «si» para garantizar el comportamiento de movimiento correcto. Por ejemplo, las ranas saltan, mientras
+               que las serpientes se deslizan. El principio de herencia nos permite solucionar este problema.</p>
+               
+            
+            <h3>5.4 El polimorfismo</h3>
+            
+            <p>El polimorfismo consiste en diseñar objetos para compartir comportamientos, lo que nos permite
+               procesar objetos de diferentes maneras. Es la capacidad de presentar la misma interfaz para diferentes
+               formas subyacentes o tipos de datos. Al utilizar la herencia, los objetos pueden anular los
+               comportamientos principales compartidos, con comportamientos secundarios específicos.
+               El polimorfismo permite que el mismo método ejecute diferentes comportamientos de dos formas:
+               anulación de método y sobrecarga de método.</p>
+               
+            <p>Alrededor de estos principios de la programación orientada a objetos se construyen muchas cosas.
+               Por ejemplo, los Principios SOLID, o los Patrones de diseño, que son recetas que se aplican a problemas
+               recurrentes que se han encontrado y se repiten en varios proyectos.</p>
+
+            <h2>6. Beneficios de Programación Orientada a Objetos</h2>
+
+            <ul>
+                <li>Reutilización del código.</li>
+                <li>Convierte cosas complejas en estructuras simples reproducibles.</li>
+                <li>Evita la duplicación de código.</li>
+                <li>Permite trabajar en equipo gracias al encapsulamiento ya que minimiza la posibilidad
+                    de duplicar funciones cuando varias personas trabajan sobre un mismo objeto al mismo tiempo.</li>
+                <li>Al estar la clase bien estructurada permite la corrección de errores en varios lugares del código.</li>
+                <li>Protege la información a través de la encapsulación, ya que solo se puede acceder a los datos del
+                    objeto a través de propiedades y métodos privados.</li>
+                <li>La abstracción nos permite construir sistemas más complejos y de una forma más sencilla yç
+                    organizada.</li>
+            </ul>
+               
+            <h2>7. Programación Orientada a Objetos en JavaScript</h2>
+
+            <p>JavaScript no es un lenguaje orientado a objetos basado en clases, es un lenguaje basado en prototipos.
+                Pero todavía tiene formas de usar la programación orientada a objetos (POO).</p>
+
+            <p>Las clases de Javascript permiten manejar el prototipado y herencia del lenguaje de una forma
+               sintácticamente clara, simplificada y con cierta semejanza frente a cómo otras tecnologías manejan POO.
+               Vamos a ver un ejemplo práctico creando una clase llamada Factura, que nos permitirá crear cómodamente
+               objetos (instancias) que comparten la misma estructura pero dotan a cada instancia de su información
+               particular.</p>
+
+            <p>Facilita sensiblemente la herencia, abstracción y encapsulación mediante un código eficiente
+               que, ahora si, resuelve los entresijos de este paradigma de la forma que hace tiempo se venía
+               reclamando.</p>
+
+            <h3>7.1 Declarar una clase en Javascript</h3>
+               
+            <p>A diferencia de las funciones constructoras, las clases deben ser declaradas previo a ser
+               instanciadas, es decir, por encima de aquellas instrucciones que hagan uso de estas clases para crear
+               instancias.</p>
+            
+            <p>Podemos crear una clase que contenga la estructura y características del objeto mediante
+               la palabra reservada class:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* --- métodos y propiedades del objeto --- */</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            
+            <p>En su interior formularemos los métodos necesarios, eligiendo entre los cuatro tipos de métodos
+               que nos ofrece Javascript.</p>
+
+            <h3>7.2 Método constructor</h3>
+            
+            <p>Cada clase puede tener, opcionalmente, un método constructor. Este es único (sólo puede haber
+               uno por clase) y la facilidad que aporta en la futura inicialización de cada instancia lo hace casi
+               imprescindible en una clase.</p>
+               
+            <p>Mediante el método constructor declaramos los nombres de las propiedades que compartirán
+               todas las instancias - precedidas por la palabra clave this - asignándoles a través de los parámetros
+               los valores específicos de cada instancia:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; constructor(numero, cliente, divisa, subtotal, IVA) {</li>
+                    <li>&emsp;&emsp;&emsp; this.numero = numero;</li>
+                    <li>&emsp;&emsp;&emsp; this.cliente = cliente;</li>
+                    <li>&emsp;&emsp;&emsp; this.divisa = divisa;</li>
+                    <li>&emsp;&emsp;&emsp; this.subtotal = subtotal;</li>
+                    <li>&emsp;&emsp;&emsp; this.IVA = IVA;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+               
+            <p>Es posible ya inicializar una instancia de Factura mediante la palabra clave new,
+               transfiriendo los valores para cada propiedad en forma de argumentos:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const factura1 = new Factura(201, "Transportes SA", "eur", 542, 113);</li>
+                    <li>&ensp;const factura2 = new Factura(202, "Mudanzas SA", "eur", 100, 21);</li>
+                    <li>&ensp;console.log("La factura " + factura1.numero + " está en divisa " + factura1.divisa);</li>
+                    <li>&ensp; // La factura 201 está en divisa eur</li>
+                </ol>
+            </div>
+            
+            <h3>7.3 Propiedades de la clase</h3>
+
+            <p>Podemos crear propiedades personalizadas que no se ajusten a ninguna de las presentes en el método
+               constructor mediante las palabras clave get y set.</p>
+
+            <p>Gracias a su formato de función, podemos dotar al objeto de propiedades que sean resultado
+               de operaciones internas, a diferencia de los objetos literales y de las funciones constructoras,
+               donde las funciones son incompatibles como valor de propiedades.</p>
+
+            <p>Aquí un ejemplo de método get:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* ... */</li>
+                    <li>&emsp;&emsp; get total() {</li>
+                        <li>&emsp;&emsp;&emsp; return this.subtotal + this.IVA;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const factura = new Factura(201, "Transportes SA", "eur", 100, 21);</li>
+                    <li>&ensp;console.log("La factura " + factura.numero + " tiene un total de " + factura.total + " " +
+                        factura.divisa);</li>
+                    <li>&ensp;// La factura 201 tiene un total de 121 eur</li>
+                </ol>
+            </div>
+
+            <p>También podemos usar métodos set, que permiten transferir valores específicos a una propiedad:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* ... */</li>
+                    <li>&emsp;&emsp; get total() {</li>
+                        <li>&emsp;&emsp;&emsp; return this.subtotal + this.IVA;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&emsp;&emsp; set nuevaDivisa(valor) {</li>
+                        <li>&emsp;&emsp;&emsp; this.divisa = valor;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;let factura = new Factura(201, "Transportes SA", "eur", 100, 21);</li>
+                    <li>&ensp;console.log("La factura " + factura.numero + " tiene un total de " + factura.total 
+                        + " " + factura.divisa);</li>
+                    <li>&ensp;// La factura 201 tiene un total de 121 eur</li>
+                    <li>&ensp;factura.nuevaDivisa = "GBP";</li>
+                    <li>&ensp;console.log("La factura " + factura.numero + " tiene un total de " + factura.total 
+                        + " " + factura.divisa);</li>
+                    <li>&ensp;// La factura 201 tiene un total de 121 GBP</li>
+                </ol>
+            </div>
+            
+            <h3>7.4 Métodos prototipo de la clase</h3>
+
+            <p>La morfología de los métodos prototipo tiene una amplia similitud con la utilizada en los métodos
+               de los objetos literales:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* ... */</li>
+                    <li>&emsp;&emsp; aplicarDescuento(porcentaje) {</li>
+                        <li>&emsp;&emsp;&emsp; this.subtotal -= this.subtotal / 100 * porcentaje;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const factura = new Factura(201, "Transportes SA", "eur", 100, 21);</li>
+                    <li>&ensp;factura.aplicarDescuento(50);</li>
+                    <li>&ensp;console.log("La factura " + factura.numero + " tiene ahora un total de " 
+                              + factura.total + " " + factura.divisa);</li>
+                    <li>&ensp;// La factura 201 tiene un total de 71 eur</li>
+                </ol>
+            </div>
+
+            <h3>7.5 Métodos estáticos de la clase</h3>
+
+            <p>Los métodos estáticos pueden ser accedidos sin necesidad de ser instanciados:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* ... */</li>
+                    <li>&emsp;&emsp; static instrucciones(){</li>
+                        <li>&emsp;&emsp;&emsp; console.log("Indica para cada factura su numero, cliente, divisa,
+                            subtotal e IVA en este orden");</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;Factura.instrucciones();</li>
+                    <li>&ensp;// Indica para cada factura su numero, cliente, divisa, subtotal e IVA en este orden</li>
+                </ol>
+            </div>
+
+            <p>Aunque en realidad, estos métodos suelen utilizarse para implementar funciones que pertenecen
+               al objeto, no a ninguna instancia en particular:</p>
+            
+               <div class="code-box">
+                <ol>
+                    <li>&ensp;class Factura {</li>
+                    <li>&emsp;&emsp; /* ... */</li>
+                    <li>&emsp;&emsp; static calcularDiferencia(factura1, factura2){</li>
+                        <li>&emsp;&emsp;&emsp; return factura1.total - factura2.total;</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;const factura1 = new Factura(201, "Transportes SA", "eur", 542, 113);</li>
+                    <li>&ensp;const factura2 = new Factura(202, "Mudanzas SA", "eur", 100, 21);</li>
+                    <li>&ensp;console.log("La diferencia entre las facturas es de " +
+                        Factura.calcularDiferencia(factura1, factura2) + " eur");</li>
+                    <li>&ensp;// La diferencia entre las facturas es de 534 eur<orden/li>
+                </ol>
+            </div>
+
+            <h2>8. Bibliografía</h2>
+            <ul>
+                <li>https://profile.es/blog/que-es-la-programacion-orientada-a-objetos/#Implementar_POO_en_diferentes_lenguajes</li>
+                <li>https://cosasdigitales.com/articulos-diseno-web/clases-javascript-guia-practica-poo/</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>    
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

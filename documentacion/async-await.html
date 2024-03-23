@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Async/await</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué hacen async y await por nosotros?</h1>
+
+            <img src="/images/async-await.jpg" alt="async-await" width="60%" height="auto">
+
+            <h2>1. Introducción</h2>
+
+            <p>En el dia a dia del desarrollo web, usamos muchos (y cada vez más) datos externos, por ejemplo, datos recibidos
+               a través de un endpoint de una API REST o los resultados de algún otro procesamiento. Es decir, cuando esto ocurre,
+               el sistema tiene que esperar a que "lleguen" los datos o que ocurra algún evento antes de utilizar estos datos.
+               Lo llamamos programación asíncrona cuando nuestro código debe esperar a que ocurra cierto procesamiento que no está bajo
+               nuestro control, como una requisición externa, y luego continuar con la ejecución de la siguiente tarea.</p>
+
+            <p>Trabajando con front-end, vemos que una buena parte de lo que sucede a nivel del navegador está dirigido por eventos
+               o event-driven. Es decir, el código espera a que suceda algún evento (por ejemplo, el usuario hace clic en un botón)
+               antes de ejecutar cualquier código. Otros ejemplos de eventos, además de los clics del mouse, son tocar la pantalla,
+               presionar una determinada tecla, pasar el cursor del mouse sobre un elemento, etc. Pero, además de estas interacciones
+               del usuario con la interfaz, existen muchas otras situaciones que pueden ser síncronas o asíncronas.</p>
+
+            <p>¿qué sucede cuando, por ejemplo, nuestro código necesita recibir algunos datos de una API? Si bien es necesario
+               esperar la solicitud y respuesta de la API, no podemos bloquear el funcionamiento de todo nuestro programa; sería lo
+               mismo que enviar un mensaje por WhatsApp y esperar la respuesta sin hacer nada más mientras tanto.</p>
+
+            <p>Es para este tipo de situaciones, que se requiere un procesamiento asíncrono, que existen las Promises.
+               El significado de Promise en JavaScript es similar al literal: Una persona te da el contacto de Telegram y te pide
+               que le envíes un mensaje, prometiendo que le responderás… Cosa que no tenemos forma de saber si sucederá.</p>
+               
+            <p>Cuando enviamos una solicitud de datos a una API, tenemos la promesa de que estos datos llegarán, pero hasta que
+               eso suceda, el sistema debe seguir funcionando. Si, por ejemplo, el servidor no funciona, esa promesa de datos podría
+               no cumplirse y tenemos que lidiar con eso. Las promesas funcionan en este contexto.</p>
+               
+            <p>Existen dos formas de trabajar con el procesamiento asíncrono (es decir, Promises) en JavaScript: usando el método
+               .then() o las palabras clave async y await.</p>
+
+            <p>Recomiendo la lectura previa del artículo sobre <a href="promesas.html" class="subrayado">promesas en JavaScript</a>
+                para entender en que consisten las promesas y su uso en las funciones asíncronas.</p>
+
+            <h2>2. Usando Async/Await</h2>
+
+            <p>Las palabras clave async y await, implementadas a partir de ES2017, son una sintaxis que simplifica la programación
+               asíncrona, facilitando el flujo de escritura y lectura de código; por lo que es posible escribir código que funcione de
+               forma asíncrona, pero que se lea y estructure de forma síncrona. Async/await funciona con código basado en Promises,
+               pero oculta las promesas para que la lectura sea más fluida y sencilla de entender.</p>
+
+            <p>Al definir una función como async, podemos usar la palabra clave await antes de cualquier expresión que retorne
+               una promesa. De esta forma, la ejecución de la función externa (la función async) se pausará hasta que se resuelva la
+               Promesa.</p>
+
+            <p>La palabra clave await recibe una Promesa y la convierte en un valor de retorno (o genera una excepción en caso de
+             error). Cuando usamos await, JavaScript esperará hasta que finalice la Promesa. Si se completa con éxito (el término
+             utilizado es fulfilled), el valor obtenido es retornado. Si la Promesa es rechazada (el término utilizado es rejected),
+             se retorna el error arrojado por la excepción.</p>
+            
+            <p>Tenemos dos partes cuando usamos async/await en nuestro código.</p>
+                        
+            <h2>2.1 Funciones async</h2>
+
+            <p>Comencemos con la palabra clave async. Puede ser ubicada delante de una función como aquí:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; return 1;</li>
+                    <li>&ensp;}</li>                          
+                </ol>
+            </div>
+
+            <p>La palabra “async” ante una función significa solamente una cosa: que la función siempre devolverá
+                una promesa. Otros valores serán envueltos y resueltos en una promesa automáticamente.</p>
+
+            <p>Por ejemplo, esta función devuelve una promesa resuelta con el resultado de 1; Probémosla:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; return 1;</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;f().then(alert); // 1</li>
+                </ol>
+            </div>
+
+            <p>Podríamos explícitamente devolver una promesa, lo cual sería lo mismo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; return Promise.resolve(1);</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;f().then(alert); // 1</li>
+                </ol>
+            </div>
+
+            <p>Entonces, async se asegura de que la función devuelva una promesa, o envuelve las no promesas
+               y las transforma en una. Bastante simple, ¿correcto? Pero no solo eso. Hay otra palabra, await,
+               que solo trabaja dentro de funciones async y es muy interesante.</p>
+
+            <p>Veamos otro ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const cargarDatos = async () => {</li>
+                    <li>&emsp;&emsp; const url = "https://jsonplaceholder.typicode.com/todos/1";</li>
+                    <li>&emsp;&emsp; const res = await fetch(url);</li>
+                    <li>&emsp;&emsp; const datos = await res.json();</li>
+                    <li>&emsp;&emsp; console.log(datos);</li>
+                    <li>&ensp;};</li>
+                    <li>&ensp;cargarDatos();</li>
+                    <li></li>                          
+                </ol>
+            </div>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// output en la consola</li>
+                    <li>&ensp;{</li>
+                    <li>&emsp;&emsp; completed: false,</li>
+                    <li>&emsp;&emsp; id: 1,</li>
+                    <li>&emsp;&emsp; title: "delectus aut autem",</li>
+                    <li>&emsp;&emsp; userId: 1</li>
+                    <li>&ensp;};</li>                         
+                </ol>
+            </div>
+
+            <p>Una función asíncrona es una función que sabe que es posible que se use la palabra clave await dentro de ella
+                para invocar código asíncrono.</p>
+                
+            <p>La palabra clave async se añade a las funciones para que devuelvan una promesa en lugar de un valor directamente.</p>
+
+            <h2>2.2 Await</h2>
+
+            <p>La sintaxis de await es la siguiente:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// funciona solamente dentro de funciones async</li>
+                    <li>&ensp;let value = await promise;</li>                          
+                </ol>
+            </div>
+
+            <p>await hace que JavaScript espere hasta que la promesa responda y devuelve su resultado.</p>
+
+            <p>Aquí hay un ejemplo con una promesa que resuelve en 1 segundo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li></li>
+                    <li>&emsp;&emsp; let promise = new Promise((resolve, reject) => {</li>
+                    <li>&emsp;&emsp;&emsp; setTimeout(() => resolve("¡Hecho!"), 1000)</li>
+                    <li>&emsp;&emsp; });</li>
+                    <li></li>
+                    <li>&emsp;&emsp; let result = await promise; // espera hasta que la promesa se resuelva (*)</li>
+                    <li></li>
+                    <li>&emsp;&emsp; alert(result); // "¡Hecho!"</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;f();</li>
+                </ol>
+            </div>
+
+            <p>La ejecución de la función es pausada en la línea (*) y se reanuda cuando la promesa responde,
+               con result volviéndose su resultado. Entonces el código arriba muestra “¡Hecho!” en un segundo.</p>
+
+            <p>Enfaticemos: await literalmente suspende la ejecución de la función hasta que se establezca
+               la promesa, y luego la reanuda con el resultado de la promesa. Eso no cuesta ningún recurso de CPU,
+               porque el motor de JavaScript puede hacer otros trabajos mientras tanto: ejecutar otros scripts,
+               manejar eventos, etc.</p>
+
+            <p>Es simplemente una sintaxis más elegante para tener el resultado de una promesa que promise.then,
+                es más fácil de leer y de escribir.</p>
+
+            <p><span class="negrita">Nota importante:</span>No se puede usar await en funciones comunes.
+               Si tratamos de usar await en una función no async,
+               tendremos un error de sintaxis:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function f() {</li>
+                    <li>&emsp;&emsp; let promise = Promise.resolve(1);</li>
+                    <li>&emsp;&emsp; let result = await promise; // Syntax error</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+            
+            <p>Es posible que obtengamos este error si olvidamos poner async antes de una función.
+               Como se dijo, “await” solo funciona dentro de una función async.</p>
+
+            <h2>3. Ejemplo</h2>
+
+            <p>Veamos el uso de async/await en el siguiente ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function showAvatar() {</li>
+                    <li></li>
+                    <li>&emsp;&emsp; // leer nuestro JSON</li>
+                    <li>&emsp;&emsp; let response = await fetch('/article/promise-chaining/user.json');</li>
+                    <li>&emsp;&emsp; let user = await response.json();
+                    <li></li>
+                    <li>&emsp;&emsp; // leer usuario github</li>
+                    <li>&emsp;&emsp; let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);</li>
+                    <li>&emsp;&emsp; let githubUser = await githubResponse.json();</li>
+                    <li></li>
+                    <li>&emsp;&emsp; // muestra el avatar</li>
+                    <li>&emsp;&emsp; let img = document.createElement('img');</li>
+                    <li>&emsp;&emsp; img.src = githubUser.avatar_url;</li>
+                    <li>&emsp;&emsp; img.className = "promise-avatar-example";</li>
+                    <li>&emsp;&emsp; document.body.append(img);</li>
+                    <li></li>
+                    <li>&emsp;&emsp; // espera 3 segundos</li>
+                    <li>&emsp;&emsp; await new Promise((resolve, reject) => setTimeout(resolve, 3000));</li>
+                    <li></li>
+                    <li>&emsp;&emsp; img.remove();</li>
+                    <li></li>
+                    <li>&emsp;&emsp; return githubUser;</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;showAvatar();</li>
+                </ol>
+            </div>
+
+            <h2>4. Tratamiento de errores</h2>
+
+            <p>Si una promesa se resuelve normalmente, entonces await promise devuelve el resultado. Pero en caso de rechazo,
+               dispara un error, tal como si hubiera una instrucción throw en aquella línea.</p>
+
+            <p>Este código:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; await Promise.reject(new Error("Whoops!"));</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>…es lo mismo que esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; throw new Error("Whoops!");</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>En situaciones reales, la promesa tomará algún tiempo antes del rechazo. En tal caso habrá un retardo antes
+               de que await dispare un error.</p>
+
+            <p>Podemos atrapar tal error usando try..catch, de la misma manera que con un throw normal:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li></li>
+                    <li>&emsp;&emsp; try {</li>
+                    <li>&emsp;&emsp;&emsp; let response = await fetch('http://no-such-url');</li>
+                    <li>&emsp;&emsp; } catch(err) {</li>
+                    <li>&emsp;&emsp;&emsp; alert(err); // TypeError: failed to fetch</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;f();</li>
+                </ol>
+            </div>
+
+            <p>En el caso de un error, el control salta al bloque catch. Podemos también envolver múltiples líneas:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li></li>
+                    <li>&emsp;&emsp; try {</li>
+                    <li>&emsp;&emsp;&emsp; let response = await fetch('/no-user-here');</li>
+                    <li>&emsp;&emsp;&emsp; let user = await response.json();</li>
+                    <li>&emsp;&emsp; } catch(err) {</li>
+                    <li>&emsp;&emsp;&emsp; // atrapa errores tanto en fetch como en response.json</li>
+                    <li>&emsp;&emsp;&emsp; alert(err);</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;f();</li>
+                </ol>
+            </div>
+
+            <p>Si no tenemos try...catch, entonces la promesa generada por el llamado de la función async f() se vuelve rechazada.
+               Podemos añadir .catch para tratrarlo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function f() {</li>
+                    <li>&emsp;&emsp; let response = await fetch('http://no-such-url');</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;// f() se vuelve una promesa rechazada</li>
+                    <li>&ensp;f().catch(alert); // TypeError: failed to fetch // (*)</li>
+                </ol>
+            </div>          
+
+            <p>Si olvidamos añadir .catch allí, obtendremos un error de promesa no tratado (visible en consola).
+            Podemos atrapar tales errores usando un manejador de evento global "unhandledrejection" (buscar información sobre
+            Tratamiento de errores con promesas).</p>
+
+            <h2>5. Cómo usar Promise.all () en JavaScript</h2>
+
+            <p>En el caso de múltiples promesas que se pueden hacer en paralelo (por ejemplo, algunos datos en diferentes endpoints REST),
+            puedes usar async/await junto con Promise.all:</p>
+
+            <p>Utilizando una función con await de manera tradicional, tenemos que esperar a que se complete cada solicitud
+               antes de pasar a la siguiente. Esto puede ser un problema cuando cada solicitud tarda en completarse. Esto puede hacer
+               que la respuesta sea muy lenta.</p>
+
+            <p>Usando Promise.all(), podemos llamar a cada una de estas API en paralelo.</p>
+
+            <p>Ten cuidado cuando uses Promise.all(), porque si una de las solicitudes con await falla, todo el .all() falla.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const cargarDatos = async () => {</li>
+                    <li>&emsp;&emsp; try{</li>
+                    <li>&emsp;&emsp;&emsp; const url1 = "https://jsonplaceholder.typicode.com/todos/1";</li>
+                    <li>&emsp;&emsp;&emsp; const url2 = "https://jsonplaceholder.typicode.com/todos/2";</li>
+                    <li>&emsp;&emsp;&emsp; const url3 = "https://jsonplaceholder.typicode.com/todos/3";</li>
+                    <li>&emsp;&emsp;&emsp; const resultados = await Promise.all([</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; fetch(url1),</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; fetch(url2),</li>
+                    <li>&emsp;&emsp;&emsp;&emsp; fetch(url3)</li>
+                    <li>&emsp;&emsp;&emsp; ]);</li>
+                    <li>&emsp;&emsp;&emsp; const promesasDeDatos = await resultados.map(result => result.json());</li>
+                    <li>&emsp;&emsp;&emsp; const datosFinales = Promise.all(promesasDeDatos);</li>
+                    <li>&emsp;&emsp;&emsp; return datosFinales</li>
+                    <li>&emsp;&emsp; } catch(err) {</li>
+                    <li>&emsp;&emsp;&emsp; console.log(err)</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;const datos = cargarDatos().then(datos => console.log(datos));</li>
+                    <li>&ensp;// output en la consola</li>
+                    <li>&ensp;[{</li>
+                    <li>&emsp;&emsp; completed: false,</li>
+                    <li>&emsp;&emsp; id: 1,</li>
+                    <li>&emsp;&emsp; title: "delectus aut autem",</li>
+                    <li>&emsp;&emsp; userId: 1</li>
+                    <li>&ensp;}, {</li>
+                    <li>&emsp;&emsp; completed: false,</li>
+                    <li>&emsp;&emsp; id: 2,</li>
+                    <li>&emsp;&emsp; title: "quis ut nam facilis et officia qui",</li>
+                    <li>&emsp;&emsp; userId: 1</li>
+                    <li>&ensp;}, {</li>
+                    <li>&emsp;&emsp; completed: false,</li>
+                    <li>&emsp;&emsp; id: 3,</li>
+                    <li>&emsp;&emsp; title: "fugiat veniam minus",</li>
+                    <li>&emsp;&emsp; userId: 1</li>
+                    <li>&ensp;}]</li>
+                    
+                </ol>
+            </div>
+
+            <h2>6. ¿Hay diferencias entre .then() y async/await?</h2>
+
+            <p>En términos de sintaxis, el método .then() posse una sintaxis con más sentido cuando se usa JavaScript de manera
+               funcional, mientras que el flujo de declaraciones con async/await tiene sentido cuando se usa en métodos de clase.</p>
+
+            <p>async/await surgió como una opción de "lectura más fácil" que .then(), pero es importante tener en cuenta que estos
+               métodos no son lógicamente equivalentes: mientras que async/await realiza el procesamiento secuencialmente, las promesas
+               con .then() se procesan en paralelo , lo que hace que este método sea más rápido. async/await simplifica la escritura y
+               la interpretación del código, pero no es tan flexible y solo funciona con una Promesa a la vez.</p>
+
+            <p>Cómo resolver este tipo de casos, por ejemplo, solicitar una matriz de id de pedido de un cliente en particular de
+               una tienda:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function getCustomerOrders(customerId) {</li>
+                    <li>&emsp;&emsp; const response = await fetch(`https://api.com/api/customer/${customerId}`)</li>
+                    <li>&emsp;&emsp; const customer = await response.json()</li>
+                    <li></li>
+                    <li>&emsp;&emsp; return await Promise.all(customer.orders.map(async (orderId) => {</li>
+                    <li>&emsp;&emsp;&emsp; const response = await fetch(`https://api.com/api/order/${orderId}`)</li>
+                    <li>&emsp;&emsp;&emsp; const orderData = await response.json()</li>
+                    <li>&emsp;&emsp;&emsp; return orderData.amount</li>
+                    <li>&emsp;&emsp; }))</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>  
+
+            <p>En el caso anterior, usamos Promise.all para hacer las peticiones en paralelo, sin esperar a que vuelva la anterior
+               para hacer la siguiente.</p>
+            
+            <h2>7. Iteraciones con async/await</h2>
+
+            <p>Pero, ¿y si necesitamos manejar varias Promesas, pero no queremos hacerlo en paralelo? Un ejemplo clásico de esta
+               situación es acceder a una base de datos con miles de registros. En este caso, no queremos que todas las solicitudes se
+               realicen en paralelo, ya que el exceso de solicitudes simultáneas puede causar problemas de rendimiento e incluso la caída
+               del servicio.</p>
+
+            <p>En este caso, async/await es más adecuado, ya que resolverá una Promesa a la vez.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;async function printCustomer(customerId){
+                    <li>&emsp;&emsp; //lógica fictícia de la función</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;async function getAndPrintAllCustomers() {</li>
+                    <li>&emsp;&emsp; const sql = 'SELECT id FROM customers'</li>
+                    <li>&emsp;&emsp; const customers = await db.query(sql, [])</li>
+                    <li>&emsp;&emsp; for (const customer of customers) {</li>
+                    <li>&emsp;&emsp;&emsp; await printCustomer(customer.id)</li>
+                    <li>&emsp;&emsp; }</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>En el caso anterior, no queremos hacer todas las solicitudes a la base de datos a la vez, sino secuencialmente.</p>
+
+            <h2>8. Bibliografía</h2>
+            <ul>
+                <li>https://es.javascript.info/async-await</li>
+                <li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function</li>
+                <li>https://www.aluracursos.com/blog/asyncawait-en-javascript-que-es-y-cuando-usar-programacion-asincrona</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>    
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

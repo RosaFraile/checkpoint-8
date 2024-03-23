@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Deconstruccion de variables</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué es la deconstrucción de variables?</h1>
+
+            <h2>1. Introducción</h2>
+
+            <p>La sintaxis de deconstrucción es una funcionalidad fascinante que vino junto con ES6 (EcmaScript 6).
+               Es una expresión de JavaScript que permite desempaquetar valores de listas (arrays) o propiedades de objetos
+               en distintas variables. Es decir, podemos extraer datos de arrays y objectos y asignarlos a
+               variables.</p>
+
+            <p>¿Por qué es esto necesario?</p>
+
+            <p>Imagina que queremos extraer datos de un arreglo. Anteriormente, ¿cómo se hacía esto?</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let introduccion = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li>&ensp;let saludo = introduccion[0];</li>
+                    <li>&ensp;let nombre = introduccion[3];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                </ol>
+            </div>
+
+
+            <p>Podemos ver que cuando queremos extraer datos de un arreglo, tenemos que hacer lo mismo una
+               y otra vez.</p>
+
+            <p>La deconstrucción de ES6 facilita la extracción de estos datos. ¿De qué forma? Primero,
+               discutiremos sobre la deconstrucción con arrays. Luego pasaremos a la deconstrucción
+               de objetos.</p>
+
+            <h2>2. Deconstrucción de arrays</h2>
+
+            <p>Si queremos extraer datos de un array es bastante sencillo usando la sintaxis de deconstrucción.</p>
+
+            <p>Tomando como referencia el primer ejemplo. En lugar de pasar por ese proceso repetitivo,
+               haríamos esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let introduccion = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li>&ensp;let [saludo, pronombre] = introduccion;</li>
+                    <li>&ensp;let nombre = introduccion[3];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(pronombre); // "Yo"</li>
+                </ol>
+            </div>
+
+            <p>También podemos lo siguiente, y conseguir el mismo resultado:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [saludo, pronombre] = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(pronombre); // "Yo"</li>
+                </ol>
+            </div>
+
+            <h3>2.1 Declarando variables antes de la asignación</h3>
+
+            <p>Las variables se pueden declarar antes de ser asignadas de esta manera:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let saludo, pronombre;</li>
+                    <li>&ensp;[saludo, pronombre] = ["Hola", "Yo" , "soy", "Sarah"];
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(pronombre); // "Yo"</li>
+                </ol>
+            </div>
+
+            <p>Observa que las variables se establecen de izquierda a derecha. Así que la primera variable
+               obtiene el primer elemento del arreglo, la segunda variable obtiene el segundo elemento, y así
+               sucesivamente.</p>
+
+            <h3>2.2 Omitiendo elementos en un array</h3>
+            
+            <p>¿Qué pasa si queremos obtener el primer y último elemento de nuestro arreglo en lugar del
+               primero y el segundo, y queremos asignar solo dos variables? Esto también se puede hacer.
+               Fíjate en el siguiente ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [saludo,,,nombre] = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                </ol>
+            </div>
+               
+            <p>¿Qué acaba de suceder?</p>
+               
+            <p>Pon atención al lado izquierdo de la asignación de variables del arreglo.
+               Observa que en lugar de tener solo una coma, tenemos tres. El separador de coma se utiliza
+               para omitir valores en un arreglo. Por lo que, si deseas omitir un elemento en un arreglo, usa comas.</p>
+               
+            <p>Veamos otro ejemplo. Si queremos saltar el primer y tercer elemento de la lista. ¿Cómo lo haríamos?</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [,pronombre,,nombre] = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li></li>
+                    <li>&ensp;console.log(pronombre); // "Yo"</li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                </ol>
+            </div>
+               
+            <p>Como ves, el separador de comas es el que hace la magia. Entonces, si queremos omitir
+               todos los elementos, simplemente hacemos esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [,,,,] = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                </ol>
+            </div>
+
+            <h3>2.3 Asignando el resto de un array</h3>
+
+            <p></p>¿Qué sucede si queremos asignar parte del array a variables y el resto de elementos de dicho
+             array a otra variable en particular? En ese caso, haríamos esto:
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [saludo, ...introduccion] = ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(introduccion); // ["Yo", "soy", "Sarah"]</li>
+                </ol>
+            </div>
+
+            <p>Utilizando este patrón, puedes desempaquetar y asignar la parte restante de un array a
+               una variable.</p>
+
+            <p>La sintaxis ...iterableObject se denomina Operador de Extensión
+               o <a href="spread-operator.html" class="subrayado">Spread Operator</a>.
+               (Puedes utilizar el link para ampliar más información sobre este tema).</p>
+
+            
+            <h3>2.4 Deconstrucción con funciones</h3>
+
+            <p>También podemos extraer datos de un arreglo devuelto por una función.
+            Digamos que tenemos una función que devuelve un arreglo como el del siguiente ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function obtenerArray() {</li>
+                    <li>&emsp;&emsp;return ["Hola", "Yo" , "soy", "Sarah"];</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;let [saludo, pronombre] = obtenerArray();</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(pronombre); // "Yo"</li>
+                </ol>
+            </div>
+               
+            <p>Como puedes observar, obtenemos los mismos resultados.</p>
+
+            <h3>2.5 Usando Valores Predeterminados</h3>
+
+            <p>Los valores predeterminados se pueden asignar a las variables en caso de que
+               el valor extraído del arreglo sea "undefined":</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let [saludo = "Hola", nombre = "Sarah"] = ["Hola"];</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludo); // "Hola"</li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                </ol>
+            </div>
+
+            <p>Por lo tanto, "nombre" se vuelve "Sarah" porque no está definido en el array.</p>
+
+            <h3>2.6 Intercambiando valores mediante deconstrucción</h3>
+
+            <p>Podemos usar la deconstrucción para intercambiar los valores de las variables:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let a = 3;</li>
+                    <li>&ensp;let b = 6;</li>
+                    <li></li>
+                    <li>&ensp;[a, b] = [b, a];</li>
+                    <li></li>
+                    <li>&ensp;console.log(a); // 6</li>
+                    <li>&ensp;console.log(b); // 3</li>
+                </ol>
+            </div>
+
+            <h2>3. Deconstrucción de objetos</h2>
+        
+            <p>Primero, veamos por qué es necesaria la deconstrucción de objetos.</p>
+
+            <p>Digamos que queremos extraer datos de un objeto y asignarlos a nuevas variables.
+            Antes de ES6, ¿cómo se haría esto?</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let nombre = persona.nombre;</li>
+                    <li>&ensp;let pais = persona.pais;</li>
+                    <li>&ensp;let trabajo = persona.trabajo;</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(pais); // "Nigeria"</li>
+                    <li>&ensp;console.log(trabajo); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <p>Observa lo tedioso que es extraer todos los datos. Tenemos que hacer lo mismo repetidamente.
+            Por suerte, la deconstrucción de ES6 provee una solución, tal como veremos en el siguiente apartado.</p>
+
+            <h3>3.1 Deconstrucción básica de objetos</h3>
+
+            <p>Repitamos el ejemplo anterior con ES6. En lugar de asignar valores uno por uno,
+               podemos usar el objeto de la izquierda para extraer los datos:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {nombre, pais, trabajo} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(pais); // "Nigeria"</li>
+                    <li>&ensp;console.log(trabajo); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <p>También es válido asignar variables a un objeto que no ha sido declarado:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let {nombre, pais, trabajo} = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(pais); // "Nigeria"</li>
+                    <li>&ensp;console.log(trabajo); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <h3>3.2 Declarando variables antes de ser asignadas</h3>
+
+            <p>Las variables en los objetos se pueden declarar antes de asignarlas con desconstrucción.
+            Probemos eso:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let nombre, pais, trabajo;</li>
+                    <li></li>
+                    <li>&ensp;{nombre, pais, trabajo} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // Error : "Unexpected token ="</li>
+                </ol>
+            </div>
+
+            <p>Espera, ¿qué acaba de pasar? Oh, nos olvidamos de agregar () antes de las llaves.</p>
+
+            <p>Los paréntesis ( ) alrededor de la asignación es una sintaxis requerida cuando se usa
+               la deconstrucción literal de un objeto sin una declaración. Esto se debe a que {} en el lado
+               izquierdo se considera un bloque y no un objeto literal. Aquí te muestro la forma correcta
+               de hacerlo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let nombre, pais, trabajo;</li>
+                    <li></li>
+                    <li>&ensp;({nombre, pais, trabajo} = persona);</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(pais); // "Nigeria"</li>
+                    <li>&ensp;console.log(trabajo); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <p>También es importante tener en cuenta que al usar esta sintaxis,
+               los paréntesis () deben ir precedido de un punto y coma. De lo contrario, podría usarse
+               para ejecutar una función de la línea anterior.</p>
+
+            <p>Observa como las variables del objeto en el lado izquierdo deben tener el mismo nombre
+               que una clave de propiedad en el objeto persona. Si los nombres son diferentes, obtendremos
+               "undefined":</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let nombre, pais, trabajo;</li>
+                    <li></li>
+                    <li>&ensp;({nombre, amigos, trabajo} = persona);</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(amigos); // undefined</li>
+                    <li>&ensp;console.log(trabajo); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <p>Pero si queremos usar un nuevo nombre de variable, bueno, también podemos hacerlo.</p>
+
+            <h3>3.3 Usando un nuevo Nombre de Variable</h3>
+            
+            <p>Si queremos asignar valores de un objeto a una nueva variable en lugar de usar el nombre
+               de la propiedad, podemos hacer esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {nombre: foo, trabajo: bar} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(foo); // "Sarah"</li>
+                    <li>&ensp;console.log(bar); // "Desarrollador"</li>
+                </ol>
+            </div>
+
+            <p>Entonces, los valores extraídos son pasados a las nuevas variables foo y bar.</p>
+
+            <h3>3.4 Usando valores predeterminados</h3>
+
+            <p>Los valores predeterminados también se pueden usar en la deconstrucción de objetos,
+            en el caso de que una variable del objeto que se quiere extraer datos sea "undefined":</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {nombre = "miNombre", amiga = "Annie"} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(amiga); // "Annie"</li>
+                </ol>
+            </div>
+
+            <p>Entonces, si el valor no es indefinido (undefined), la variable almacena el valor extraído
+               del objeto como en el caso de "nombre". De lo contrario, usará el valor predeterminado como lo hizo
+               con "amiga".</p>
+
+            <p>También podemos establecer valores predeterminados cuando asignamos valores a una nueva variable:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {name: foo = "miNombre", amiga: bar = "Annie"} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(foo); // "Sarah"</li>
+                    <li>&ensp;console.log(bar); // "Annie"</li>
+                </ol>
+            </div>
+
+            <p>Aquí "nombre" se extrajo de "persona" y se asignó a una variable diferente, "amiga",
+               que estaba "undefined" en "persona", por lo que a la nueva variable "bar" se le asignó el valor
+               predeterminado.</p>
+
+            <h3>3.5 Nombre de propiedad calculado</h3>
+            
+            <p>El nombre de propiedad calculado es otra funcionalidad de objectos literales que también
+               funciona al deconstruir. Puedes especificar el nombre de una propiedad a través de una expresión
+               si la pones entre corchetes:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let prop = "nombre";</li>
+                    <li></li>
+                    <li>&ensp;let {[prop] : foo} = {</li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria"</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;console.log(foo); // "Sarah"</li>
+                </ol>
+            </div>
+
+            <h3>3.6 Combinando arrays con objetos</h3>
+
+            <p>Los arrays también se pueden usar con objetos en la deconstrucción de objetos:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {<li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria",</li>
+                    <li>&emsp;&emsp; amigas: ["Annie", "Becky"]</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {nombre: foo, amigas: bar} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(foo); // "Sarah"</li>
+                    <li>&ensp;console.log(bar); // ["Annie", "Becky"]</li>
+                </ol>
+            </div>
+
+            <h3>3.7 Anidamiento en la deconstrucción de objetos</h3>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {<li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; lugar: {</li>
+                    <li>&emsp;&emsp;&emsp; pais: "Nigeria",</li>
+                    <li>&emsp;&emsp;&emsp; ciudad: "Lagos"</li>
+                    <li>&emsp;&emsp; }, </li>
+                    <li>&emsp;&emsp; amigas : ["Annie", "Becky"]</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let {</li>
+                    <li>&emsp;&emsp; nombre: foo,</li>
+                    <li>&emsp;&emsp; lugar: { pais: bar, ciudad: x }</li>
+                    <li>&ensp;} = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(foo); // "Sarah"</li>
+                    <li>&ensp;console.log(bar); // "Nigeria"</li>
+                </ol>
+            </div>
+
+            <h3>3.7 Resto (...rest) en la deconstrucción de objetos</h3>
+
+            <p>La sintaxis de resto (Spread Operator) también se puede utilizar para recopilar
+               claves de propiedad que aún no han sido asignadas durante la desestructuración.
+               Dichas claves y sus valores se copian en un nuevo objeto:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let persona = {<li>
+                    <li>&emsp;&emsp; nombre: "Sarah",</li>
+                    <li>&emsp;&emsp; pais: "Nigeria",</li>
+                    <li>&emsp;&emsp; trabajo: "Desarrollador"</li>
+                    <li>&emsp;&emsp; amigas : ["Annie", "Becky"]</li>
+                    <li>&ensp;};</li>
+                    <li></li>
+                    <li>&ensp;let { nombre, amigas, ...otras } = persona;</li>
+                    <li></li>
+                    <li>&ensp;console.log(nombre); // "Sarah"</li>
+                    <li>&ensp;console.log(amigas); // ["Annie", "Becky"]</li>
+                    <li>&ensp;console.log(otras); // {pais: "Nigeria", trabajo: "Desarrollador"}</li>
+                </ol>
+            </div>
+
+            <p>Aquí, las propiedades restantes cuyas claves no formaban parte de los nombres
+               de variable enumerados se asignaron a la variable otras. La sintaxis de resto (rest)
+               en el ejemplo es ...otras. Cuyo nombre otras se puede cambiar por cualquiera de tu preferencia.</p>
+
+
+            <h3>3.8 Desestructuración de Objetos y Funciones</h3>
+
+            <p>La deconstrucción de objetos se puede utilizar para asignar parámetros a funciones:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function persona({ nombre: x, trabajo: y } = {}) {
+                    <li>&emsp;&emsp; console.log(x);</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;persona({ nombre: "Michelle" }); // "Michelle"</li>
+                    <li>&ensp;persona(); // undefined</li>
+                    <li>&ensp;cpersona(amiga); // Error : amiga is not defined</li>
+                </ol>
+            </div>
+
+            <p>Observa los {} en el lado derecho de los parámetros del objecto.
+               Nos permite llamar a la función sin pasar ningún argumento. Por eso recibimos undefined.
+               Si lo eliminamos, obtendremos un mensaje de error.</p>
+
+            <p>También podemos asignar valores predeterminados a los parámetros:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function persona({ nombre: x = "Sarah", trabajo: y = "Desarrollador" } = {}) {</li>
+                    <li>&emsp;&emsp; console.log(x);</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;persona({ nombre }); // "Sarah"</li>
+                </ol>
+            </div>
+
+            <h2>4. Bibliografía</h2>
+            <ul>
+                <li>https://www.freecodecamp.org/espanol/news/desestructuracion-de-arreglos-y-objetos-en-javascript/</li>
+                <li>https://dev.to/alextomas80/el-operador-spread-en-javascript-12hc</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>
+        
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

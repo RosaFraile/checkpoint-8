@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Funciones flecha</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Qué es una función de flecha?</h1>
+
+            <h2>1. Introducción</h2>
+
+            <p>Las funciones flecha (arrow functions) son indudablemente una  de las características
+                más populares de ES6 (EcmaScript 6). Ellas introducen una nueva forma de escribir funciones concisas.</p>
+
+            <h2>2. Sintaxis</h2>
+
+            <p>Tienen la siguiente sintaxis:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let func = (arg1, arg2, ..., argN) => expression;</li>
+                </ol>
+            </div>
+
+            <p>Esto crea una función "func" que acepta los parámetros "arg1..argN", luego evalúa la "expression" del lado derecho
+               mediante su uso y devuelve su resultado.</p>
+            
+            <p>Se le llama función de flecha por el símbolo "=>" que se utiliza en su sintaxis</p>
+
+            <p>Es la versión más corta de:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let func = function(arg1, arg2, ..., argN) {</li>
+                    <li>&emsp; &emsp; return expression;</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>Veamos a continuación un ejemplo para comparar una declaración de una función con una función de flecha, que es del tipo expresión
+               de función anónima.</p>
+
+            <p>Tenemos la siguiente declaración de función:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;function suma(a, b) {</li>
+                    <li>&emsp; &emsp; return a + b;</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>Cuyo equivalente escrito mediante la función de flecha sería así:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const suma = (a, b) => a + b;</li>
+                </ol>
+            </div>
+            
+            <h2>2. Diferencias clave de las funciones de flecha respecto a funciones regulares</h2>
+
+            <h3>2.1 Retorno implícito</h3>
+            
+            <p>Una gran ventaja es el retorno implícito en expresiones de una línea.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const duplicar = n => n * 2</li>
+                </ol>
+            </div>
+
+            <p>Es equivalente a:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const duplicar = function(n) {</li>
+                    <li>&emsp; &emsp; return n * 2;</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <h3>2.2 Manejo de "this"</h3>
+
+            <p>Otra diferencia importante es que las flechas heredan el valor de this de su contexto padre.
+               Esto evita problemas típicos al pasar callbacks:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const obj = {</li>
+                    <li>&emsp; &emsp; nombre: 'Juan',</li>
+                    <li>&emsp; &emsp; imprimir: () => {</li>
+                    <li>&emsp; &emsp; console.log(this.nombre)</li>
+                    <li>&emsp; &emsp; }</li>
+                    <li>&ensp;}</li>
+                    <li>&ensp;obj.imprimir() // undefined</li>
+                </ol>
+            </div>
+
+            <p>Aquí "this" dentro de la función de flecha NO hace referencia a obj, sino al contexto global.</p>
+
+            <h3>2.2 Ámbito (scope)</h3>
+
+            <p>Las funciones flecha comparten el mismo <span class="negrita">ámbito léxico</span> que su contexto padre,
+               accediendo a las mismas variables y this que dicho contexto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const exterior = () => {</li>
+                    <li>&emsp; &emsp; const variableExterna = 'Valor exterior'</li>
+                    <li>&emsp; &emsp; return () => {</li>
+                    <li>&emsp; &emsp; console.log(variableExterna) // Accede sin problema</li>
+                    <li>&emsp; &emsp; }</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>La funciónflecha anidada puede usar "variableExterna" porque comparten ámbito.</p>
+
+            <h2>3. Declaración y sintaxis</h2>
+
+            <p>La sintaxis básica de una función flecha es:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// Un solo parámetro</li>
+                    <li>&ensp;param => expression</li>
+                    <li></li>
+                    <li>&ensp;// Múltiples parámetros</li>
+                    <li>&ensp;(param1, param2) => expression</li>
+                </ol>
+            </div>
+
+            <p>Donde "param1", "param2"son los parámetros, "=>"" representa la función flecha y
+               "expression" es el cuerpo de la función (retornado implícitamente).</p>
+
+            <h3>3.1 Parámetros y paréntesis</h3>
+            
+            <p>A diferencia de las funciones regulares, los paréntesis alrededor de los parámetros
+               son opcionales cuando hay un solo parámetro:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;param => expression</li>
+                    <li></li>
+                    <li>&ensp;// Múltiples parámetros</li>
+                    <li></li>
+                    <li>&ensp;(param) => expression</li>
+                </ol>
+            </div>
+               
+            <p>Pero con múltiples parámetros, los paréntesis son obligatorios:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// Así NO es válido:</li>
+                    <li></li>
+                    <li>&ensp;param1, param2 => expression</li>
+                    <li></li>
+                    <li>&ensp;// Debe ser así:</li>
+                    <li></li>
+                    <li>&ensp;(param1, param2 )=> expression</li>
+                </ol>
+            </div>
+               
+            <h3>3.2 Retorno explícito con llaves</h3>
+
+            <p>Si la función de flecha tiene más de una expresión, debemos envolverlas entre llaves
+               y especificar un return explícito:</p>
+            
+               <div class="code-box">
+                <ol>
+                    <li>&ensp;const sumaCompleja = (a,b) => {</li>
+                    <li>&emsp; &emsp; let resultado = a + b</li>
+                    <li>&emsp; &emsp; return resultado * 2</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>Esto obliga a definir un retorno explícito con return, en lugar de usar el retorno implícito.</p>
+               
+            <h3>3.3 Parámetros predeterminados</h3>
+
+            <p>Las funciones flecha también admiten asignar valores predeterminados a los parámetros.
+               Esto aumenta la legibilidad:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const cuadrado = (lado=10) => lado * lado</li>
+                    <li></li>
+                    <li>&ensp;cuadrado() // 100  (lado por defecto 10)</li>
+                </ol>
+            </div>
+
+            <p>Podemos pasar un lado diferente si queremos calcular otros cuadrados.</p>
+
+            <h3>3.4 Funciones de flecha como expresiones</h3>
+
+            <p>Al ser funciones anónimas, las funciones de flecha normalmente se almacenan en
+               variables para ser llamadas:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// Almacenamos la función flecha en una variable</li>
+                    <li>&ensp;const duplicar = n => n * 2</li>
+                    <li></li>
+                    <li>&ensp;duplicar(3) // 6</li>
+                    <li></li>
+                    <li>&ensp;triplicar = n => n * 3</li>
+                </ol>
+            </div>
+
+            <p>Esto se conoce como una expresión de función.</p>
+
+            <h3>3.5 Devolver objetos literales</h3>
+
+            <p>Ten en cuenta que devolver objetos literales utilizando la sintaxis de cuerpo conciso
+               params => {object: literal} no funcionará como se esperaba.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var func = () => { foo: 1 };</li>
+                    <li>&ensp;// ¡Llamar a func() devuelve undefined!</li>
+                    <li></li>
+                    <li>&ensp;var func = () => { foo: function() {} };</li>
+                    <li>&ensp;// SyntaxError: la declaración function requiere un nombre</li>
+                </ol>
+            </div>
+
+            <p>Esto se debe a que el código entre llaves ({}) se procesa como una secuencia de declaraciones
+               (es decir, foo se trata como una etiqueta, no como una clave en un objeto literal).</p>
+
+            <p>Debes envolver el objeto literal entre paréntesis:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var func = () => ({ foo: 1 });</li>
+                </ol>
+            </div>
+
+            <h3>3.6 Saltos de línea</h3>
+
+            <p>Una función flecha no puede contener un salto de línea entre sus parámetros y su flecha.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var func = (a, b, c)</li>
+                    <li>&ensp; => 1;</li>
+                    <li>&ensp;// SyntaxError: expresión esperada, obtuve '=>'</li>
+                </ol>
+            </div>
+
+            <p>Sin embargo, esto se puede modificar colocando el salto de línea después de la flecha o usando
+               paréntesis/llaves como se ve a continuación para garantizar que el código se mantenga bonito y esponjoso.
+               También puedes poner saltos de línea entre argumentos.</p>
+
+            <h3>3.7 Orden de procesamiento</h3>
+            
+            <p>Aunque la flecha en una función flecha no es un operador, las funciones flecha tienen reglas de
+               procesamiento especiales que interactúan de manera diferente con prioridad de operadores en comparación
+               con las funciones regulares.</p>
+               
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let callback;</li>
+                    <li></li>
+                    <li>&ensp;callback = callback || function() {}; // ok</li>
+                    <li></li>
+                    <li>&ensp;callback = callback || () => {};</li>
+                    <li>&ensp;// SyntaxError: argumentos de función flecha no válidos</li>
+                    <li></li>
+                    <li>&ensp;callback = callback || (() => {});    // bien</li>
+                </ol>
+            </div>
+
+            <h2>4. Usos y aplicaciones habituales</h2>
+
+            <p>Las funciones flecha tienen varios usos principales en el JS moderno. Los más destacados son:</p>
+
+            <h3>4.1 Callbacks</h3>
+
+            <p>Dado que heredan el ámbito y "this" del padre, son perfectas para pasar callbacks
+               sin tener que envolverlas en otras funciones:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const nombres = ['Juan', 'Marta', 'María']</li>
+                    <li></li>
+                    <li>&ensp;nombres.forEach(nombre => {</li>
+                    <li>&emsp;&emsp; console.log(`Hola ${nombre}`)</li>
+                    <li>&ensp;})</li>
+                </ol>
+            </div>
+
+            <h3>4.2 Reemplazar funciones anónimas</h3>
+
+            <p>Ya no es necesario escribir function() {} cada vez. Podemos usar arrows más simples:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;[1,2,3].map(function(n) {</li>
+                    <li>&emsp;&emsp; return n * 2</li>
+                    <li>&ensp;})</li>
+                    <li></li>
+                    <li>&ensp;// Se simplifica con flechas:</li>
+                    <li></li>
+                    <li>&ensp;[1,2,3].map( n => n * 2)</li>
+                </ol>
+            </div>
+
+            <h3>4.3 Métodos de arrays</h3>
+
+            <p>Los métodos .map(), .filter(), .reduce(), etc se benefician en gran medida de las funciones
+               de flecha:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const nums = [1, 2, 3, 4, 5]</li>
+                    <li></li>
+                    <li>&ensp;const pares = nums.filter(n => n % 2 === 0) // [2, 4]</li>
+                    <li></li>
+                    <li>&ensp;const duplicados = nums.map(n => n * 2) // [2, 4, 6, 8, 10]</li>
+                </ol>
+            </div>
+
+            <h2>5. Ventajas y desventajas de las funciones de flecha</h2>
+
+            <p>Hay algunas limitaciones sintácticas por ser funciones anónimas.
+               Pero en líneas generales, sus ventajas compensan ampliamente estas desventajas.</p>
+            
+            <h3>5.1 Ventajas</h3>
+
+            <ul>
+                <li>Código más conciso y limpio.</li>
+                <li>Sintaxis simplificada sin escribir "function"</li>
+                <li>Retorno implícito en expresiones de una línea</li>
+                <li>Manejo intuitivo de "this"</li>
+                <li>Comparten ámbito con el padre</li>
+            </ul>
+            
+            
+            <h3>5.2 Desventajas</h3>
+
+            <ul>
+                <li>No se pueden usar como constructores con "new"</li>
+                <li>No tienen su propio "arguments", "super" ni "new.target"</li>
+                <li>No se pueden usar para métodos de objeto abreviados</li>
+            </ul>
+
+            <h2>6. Ejemplos de uso básico</h2>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;// Una función flecha vacía devuelve undefinided</li>
+                    <li>&ensp;let empty = () => {};</li>
+                    <li></li>
+                    <li>&ensp;(() => "foobar")();</li>
+                    <li>&ensp;// Devuelve "foobar"</li>
+                    <li>&ensp;// (esta es una expresión de función invocada inmediatamente)</li>
+                    <li></li>
+                    <li>&ensp;var simple = (a) => (a > 15 ? 15 : a);</li>
+                    <li>&ensp;simple(16); // 15</li>
+                    <li>&ensp;simple(10); // 10</li>
+                    <li></li>
+                    <li>&ensp;let max = (a, b) => (a > b ? a : b);</li>
+                    <li></li>
+                    <li>&ensp;// Fácil filtrado de arreglos, mapeo, ...</li>
+                    <li></li>
+                    <li>&ensp;var arr = [5, 6, 13, 0, 1, 18, 23];</li>
+                    <li></li>
+                    <li>&ensp;var sum = arr.reduce((a, b) => a + b);  // 66</li>
+                    <li></li>
+                    <li>&ensp;var even = arr.filter((v) => v % 2 == 0);  // [6, 0, 18]</li>
+                    <li></li>
+                    <li>&ensp;var double = arr.map((v) => v * 2);  // [10, 12, 26, 0, 2, 36, 46]</li>
+                    <li></li>
+                    <li>&ensp;// Cadenas de promesas más concisas</li>
+                    <li>&ensp;promise</li>
+                    <li>&emsp;&emsp; .then((a) => {</li>
+                    <li>&emsp;&emsp; // ...</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li>&emsp;&emsp; .then((b) => {</li>
+                    <li>&emsp;&emsp; // ...</li>
+                    <li>&emsp;&emsp; })</li>
+                    <li></li>
+                    <li>&ensp;// Funciones flecha sin parámetros que son visualmente más fáciles de procesar</li>
+                    <li>&ensp;setTimeout(() => {</li>
+                    <li>&emsp;&emsp; console.log("sucederá antes");</li>
+                    <li>&emsp;&emsp; setTimeout(() => {</li>
+                    <li>&emsp;&emsp;&emsp; // código más profundo</li>
+                    <li>&emsp;&emsp;&emsp; console.log("Sucederá más tarde");</li>
+                    <li>&emsp;&emsp; }, 1);</li>
+                    <li>&ensp;}, 1);</li>
+
+                </ol>
+            </div>
+
+            <h2>7. Ejercicios</h2>
+            <h3>7.1 Ejercicio 1</h3>
+            <p>Hacer una función que convierta de grados centígrados a Farenheit.</p>
+
+            <h3>7.2 Ejercicio 2</h3>
+
+            <p>Hacer una función que muestre la tabla de multiplicar de un número.</p>
+
+            <h3>7.3 Ejercicio 3</h3>
+
+            <p>Función que admita un número variable de parámetros y devuelva cuantos parametros se le pasaron</p>
+
+            <h2>8. Soluciones</h2>
+            <h3>8.1 Solución ejercicio 1</h3>
+
+            <img src="/images/eje1.png" alt="Ejercicio 1" width="40%" height="auto">
+
+            <h3>8.2 Solución ejercicio 2</h3>
+
+            <img src="/images/eje2.png" alt="Ejercicio 1" width="40%" height="auto">
+
+            <h3>8.3 Solución ejercicio 3</h3>
+
+            <img src="/images/eje3.png" alt="Ejercicio 1" width="40%" height="auto">
+
+            <h2>9. Bibliografía</h2>
+            <ul>
+                <li>https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions</li>
+                <li>https://dcreations.es/blog/javascript/funciones-flecha-javascript</li>
+                <li>https://www.freecodecamp.org/espanol/news/cuando-y-por-que-debes-usar-las-funciones-flecha-de-es6-y-cuando-no/</li>
+                <li>https://github.com/MaryAlvarezH/Arrow-functions/blob/master/eje1.js</li>
+            </ul>
+
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>
+        
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>

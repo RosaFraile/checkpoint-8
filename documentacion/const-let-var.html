@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tipo de bucles</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo_1.jpg" alt="Code Wizard"></a>
+            </div>
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <h1>Code Wizard</h1>
+                </div>
+                <div class="sub-heading">
+                    <h2>Checkpoint 8 - JavaScript Moderno</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>¿Cuáles son las diferencias entre const, let y var?</h1>
+    
+            <h2>1. Introducción</h2>
+            <p>Hasta la introducción de la especificación ES6 los programadores Javascript estaban
+             acostumbrados a declarar cada variable con la palabra clave "var", la única disponible en ese momento.
+             Con ES6, sin embargo, se han introducido dos nuevas palabras clave, "let" y "const", que conllevan
+             algunas diferencias en el uso.</p>
+            <p>Hablaremos de var, let y const  con respecto a su ámbito (scope), uso y hoisting.</p>
+
+            <h2>2. Ámbito local o global: ¿Cuál es la diferencia?</h2>
+            <p>Antes que nada, aclaremos el concepto de scope, es decir donde una variable o una constante pueden
+            actuar en una específica parte del código. El ámbito, de hecho, es una de las principales diferencias
+            entre let y var.</p>
+            
+            <h3>2.1 Ámbito local</h3>
+            <p>El alcance local se refiere únicamente a un bloque específico, es decir a las líneas comprendidas entre
+            dos corchetes {}. Las constantes y las variables declaradas en el interior de un bloque tiene entonces
+            un alcance local. Cuando utilizamos las palabras clave const o let para indicar constantes o variables,
+            estas funcionarán entonces solamente en el bloque en el que están declaradas. Serán, por el contrario,
+            inaccesibles al exterior del bloque en cuestión.</p>
+            
+            <h3>2.2 Ámbito global</h3>
+            <p>Una variable o una constante declaradas fuera de una función y no limitadas
+            entre corchetes {} en un bloque tienen el alcance global. Son entonces accesibles y
+            utilizables en el script a nivel global.</p>
+            
+            <p>Está bien señalar que las variables declaradas en el interior de un bloque tienen prioridad
+             frente a las del alcance global. Como veremos más adelante, la palabra clave let se puede usar
+             para evitar que la variable local se sobreponga a una global.</p>
+
+             <h2>3. Hoisting</h2>
+             <p>Hoisting quiere decir el comportamiento de Javascript que permite utilizar variables antes de que
+             estuvieran declaradas.</p>
+             
+             <p>Esto es cierto para las variables indicadas con la palabra clave var, que ya
+             son accesibles en la parte superior del bloque de código en el que se encuentran, aunque en realidad
+             solo serán declaradas más abajo.</p>
+             
+             <p>Esto no se aplica a las variables indicadas con la palabra clave let. Estas no se inicializan
+             antes de la declaración real, e intentar usarlas antes de la línea de código en la cual aparecen
+             resultará en un "Reference error".</p>
+
+            <h2>4. Var, let y const</h2>
+            
+            <p>Como hemos ya anticipado, antes de la llegada de ES6 era posible declarar las variables solamente
+               a través de la palabra clave var. ES6 ha introducido las nuevas palabras clave const y let para
+               declarar constantes y variables.</p>
+
+            <ul>
+                <li>La palabra clave var. Una variable declarada a través de la palabra clave var no está limitada
+                    al bloque, pero se puede utilizar en el interior de la función donde se encuentra. La variable
+                    tiene un alcance de funcionamiento. En este caso, la variable puede ser de nuevo denominada más
+                    allá del bloque en el cual está declarada en cuanto no está limitada al alcance del bloque.
+                    Tiene además alcance global, siendo accesible a través del objeto window. A diferencia de la
+                    variable let, la variable var puede ser de nuevo declarada en el interior del mismo alcance.
+                    En este caso el primer valor será simplemente reemplazado.</li>
+                <li>La palabra clave let. Ha sido utilizada para declarar variables ligadas al bloque en el
+                    que aparece. Declarar una variable con let limita entonces el alcance a ese específico bloque.
+                    Estosignifica también que no se sobrescribirá variables globales y no será accesible a través del
+                    objeto window. Si intentamos recordar una variable indicada con let más allá del bloque en el cual
+                    se encuentra recibiremos en la pantalla un mensaje de "Reference error". Las variables declaradas
+                    con let, además, no se pueden volver a declarar en el interior del mismo
+                    ámbito, sino solamente en bloques diferentes.</li>
+                <li>La palabra clave const. Como es fácil de intuir, la palabra clave const se utiliza para declarar
+                    una constante, es decir una variable que no se puede reasignar. Su alcance está limitado al bloque
+                    en el cual está declarada.</li>
+            </ul>
+
+            <p>En los siguientes apartados vamos a ver cada una de ellas con más detalle.</p>
+
+            <h3>4.1 Var</h3>
+            <p>Antes de la llegada de ES6, las declaraciones var eran las que mandaban. Sin embargo,
+            hay problemas asociados a las variables declaradas con var. Por eso fue necesario que surgieran
+            nuevas formas de declarar variables. En primer lugar, vamos a entender más sobre var antes de discutir
+            esos problemas.</p>
+
+            <h4>4.1.1 Ámbito de var</h4>
+            <p>El ámbito, significa esencialmente dónde están disponibles estas variables para su uso. Las declaraciones
+            var tienen un ámbito global o un ámbito de función/local.</p>
+
+            <p>El ámbito es global cuando una variable var se declara fuera de una función. Esto significa que
+            cualquier variable que se declare con var fuera de una función está disponible para su uso en toda la
+            pantalla.</p>
+
+            <p>var tiene un ámbito local cuando se declara dentro de una función. Esto significa que está disponible
+            y solo se puede acceder a ella dentro de esa función.</p>
+
+            <p>Para entenderlo mejor, veamos el siguiente ejemplo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar = "hey, hola";</li>
+                    <li></li>
+                    <li>&ensp;function nuevaFuncion() {</li>
+                    <li>&emsp; &emsp; var hola = "hola";</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>Aquí, "saludar" tiene un ámbito global porque existe fuera de la función mientras que "hola" tiene un
+               ámbito local. Así que no podemos acceder a la variable "hola" fuera de la función. Así que si realizamos
+               esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar = "hey, hola";</li>
+                    <li></li>
+                    <li>&ensp;function nuevaFuncion() {</li>
+                    <li>&emsp; &emsp; var hola = "hola";</li>
+                    <li>&ensp;}</li>
+                    <li>&ensp;console.log(hola); // error: hola is not defined</li>
+                </ol>
+            </div>
+
+            <p>Obtendremos un error que se debe a que hola no está disponible fuera de la función.</p>
+
+            <p>Las variables con var se pueden volver a declarar y modificar. Esto significa que podemos hacer
+               lo siguiente dentro del mismo ámbito y no obtendremos un error.</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar = "hey, hola";</li>
+                    <li></li>
+                    <li>&ensp;var saludar = "dice Hola tambien";</li>
+                </ol>
+            </div>
+
+            <p>y esto también:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar = "hey, hola";</li>
+                    <li></li>
+                    <li>&ensp;saludar = "dice Hola tambien";</li>
+                </ol>
+            </div>
+
+            <h4>4.1.2 Hoisting de var</h4>
+            Hoisting es un mecanismo de JavaScript en el que las variables y declaraciones de funciones se mueven
+            a la parte superior de su ámbito antes de la ejecución del código. Esto significa que si hacemos esto:
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;console.log (saludar);</li>
+                    <li></li>
+                    <li>&ensp;var saludar = "dice hola";</li>
+                </ol>
+            </div>
+
+            <p>se interpreta así:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar;</li>
+                    <li>&ensp;console.log(saludar); // saludar is undefined</li>
+                    <li>&ensp;saludar = "dice hola";</li>
+                </ol>
+            </div>
+
+            <p>Entonces las variables con var se elevan a la parte superior de su ámbito y se inicializan
+               con un valor de undefined.</p>
+
+            <h4>4.1.3 Problema con var</h4>
+            <p>Hay una debilidad que viene con  var. Usaré el ejemplo de abajo para explicarlo:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;var saludar = "hey, hola";</li>
+                    <li>&ensp;var tiempos = 4; </li>
+                    <li></li>
+                    <li>&ensp;if (tiempos > 3) {</li>
+                    <li>&emsp; &emsp; var saludar = "dice Hola tambien";</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;console.log(saludar) // "dice Hola tambien"</li>
+                </ol>
+            </div>
+
+            <p>Por lo tanto, como "tiempos > 3" devuelve true, saludar se redefine para "dice Hola tambien".
+            Aunque esto no es un problema si quieres redefinir saludar a conciencia, se convierte en un problema
+            cuando no te das cuenta de que la variable saludar ha sido definida antes.</p>
+
+            <p>Si has utilizado saludar en otras partes de tu código, puede que te sorprenda la salida que puedes
+            obtener. Esto probablemente causará muchos errores en tu código. Por eso son necesarios let y const.</p>
+
+            <h3>4.2 Let</h3>
+            <p>let es ahora preferible para la declaración de variables. No es una sorpresa, ya que es una
+               mejora de las declaraciones con var. También resuelve el problema con var que acabamos de cubrir.
+               Consideremos por qué esto es así.</p>
+
+            <h4>4.2.1 Ámbito de let</h4>
+
+            <p>let tiene un ámbito de bloque</p>
+            <p>Un bloque es un trozo de código delimitado por {}. Un bloque vive entre llaves.
+               Todo lo que está dentro de llaves es un bloque.</p>
+
+            <p>Así que una variable declarada en un bloque con let  solo está disponible para su uso dentro
+               de ese bloque. Permíteme explicar esto con un ejemplo:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let saludar = "dice Hola";</li>
+                    <li>&ensp;let tiempos = 4; </li>
+                    <li></li>
+                    <li>&ensp;if (tiempos > 3) {</li>
+                    <li>&emsp; &emsp; let hola = "dice Hola tambien";</li>
+                    <li>&emsp; &emsp; console.log(hola);// "dice Hola tambien"</li>
+                    <li>&ensp;}</li>
+                    <li></li>
+                    <li>&ensp;console.log(hola) // hola is not defined</li>
+                </ol>
+            </div>
+
+            <p>Vemos que el uso de hola fuera de su bloque (las llaves donde se definió) devuelve un error.
+               Esto se debe a que las variables let tienen un alcance de bloque.</p>
+
+            <p>let puede modificarse pero no volver a declararse.</p>
+            <p>Al igual que var,  una variable declarada con let puede ser actualizada dentro de su ámbito.
+               A diferencia de var, una variable let no puede ser re-declarada dentro de su ámbito. Así que mientras
+               esto funciona:</p>
+            
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let saludar = "dice Hola";</li>
+                    <li>&ensp;saludar = "dice Hola tambien";</li>
+                </ol>
+            </div>
+
+            <p>esto devolverá un error:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let saludar = "dice Hola";</li>
+                    <li>&ensp;let saludar = "dice Hola tambien"; // error: Identifier 'saludar' has already been declared</li>
+                </ol>
+            </div>
+
+            <p>Sin embargo, si la misma variable se define en diferentes ámbitos, no habrá ningún error:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;let saludar = "dice Hola";</li>
+                    <li>&ensp;if (true) {</li>
+                    <li>&emsp; &emsp; let saludar = "dice Hola tambien";</li>     
+                    <li>&emsp; &emsp; console.log(saludar); // "dice Hola tambien"</li>
+                    <li>&ensp;}</li>    
+                    <li>&ensp;console.log(saludar); // "dice Hola"</li>            
+                </ol>
+            </div>
+
+            <p>¿Por qué no hay ningún error? Esto se debe a que ambas instancias son tratadas como variables
+               diferentes, ya que tienen ámbitos diferentes.</p>
+
+            <p>Este hecho hace que let sea una mejor opción que var. Cuando se utiliza let, no hay que
+               preocuparse de sí se ha utilizado un nombre para una variable antes, puesto que una variable
+               solo existe dentro de su ámbito.</p>
+
+            <p>Además, como una variable no puede ser declarada más de una vez dentro de un ámbito, entonces
+               el problema discutido anteriormente que ocurre con var no sucede.</p>
+
+            <h4>4.2.2 Hoisting de let</h4>
+            <p>Al igual que  var, las declaraciones let se elevan a la parte superior. A diferencia de var
+               que se inicializa como undefined, la palabra clave let no se inicializa. Sí que si intentas usar
+               una variable let antes de declararla, obtendrás un Reference Error.</p>
+
+            <h3>4.3 Const</h3>
+            <p>Las variables declaradas con const mantienen valores constantes. Las declaraciones const tienen
+            similitudes con las declaraciones let.</p>
+
+            <h4>4.3.1 Ámbito de const</h4>
+
+            <p>Las declaraciones const tienen un ámbito de bloque. Al igual que las declaraciones let, solamente
+               se puede acceder a las declaraciones const dentro del bloque en el que fueron declaradas.</p>
+
+            <p>const no puede modificarse ni volver a declararse. Esto significa que el valor de una variable
+               declarada con const s el mismo dentro de su ámbito. No se puede actualizar ni volver a declarar.
+               Así que si declaramos una variable con const, no podemos hacer esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const saludar = "dice Hola";</li>
+                    <li>&ensp;saludar = "dice Hola tambien";// error: Assignment to constant variable. </li>
+                </ol>
+            </div>
+
+            <p>ni esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const saludar = "dice Hola";</li>
+                    <li>&ensp;const saludar = "dice Hola tambien";// error: Identifier 'saludar' has already been declared
+                    </li>
+                </ol>
+            </div>
+
+            <p>Por lo tanto, toda declaración const, debe ser inicializada en el momento de la declaración.</p>
+
+            <p>Este comportamiento es algo diferente cuando se trata de objetos declarados con const.
+               Mientras que un objeto const no se puede actualizar, las propiedades de este objeto sí se pueden
+               actualizar. Como resultado, si declaramos un objeto const como este:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;const saludar = {</li>
+                    <li>&emsp; &emsp; mensaje: "dice Hola",</li>
+                    <li>&emsp; &emsp; tiempos: 4</li>
+                    <li>&ensp;}</li>
+                </ol>
+            </div>
+
+            <p>mientras que no podemos hacer esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;saludar = {</li>
+                    <li>&emsp; &emsp; palabras: "Hola",</li>
+                    <li>&emsp; &emsp; numero: "cinco"</li>
+                    <li>&ensp;}  // error:  Assignment to constant variable.</li>
+                </ol>
+            </div>
+
+            <p>podemos hacer esto:</p>
+
+            <div class="code-box">
+                <ol>
+                    <li>&ensp;saludar.mensaje = "dice Hola tambien";</li>
+                </ol>
+            </div>
+
+            <p>Esto actualizará el valor de saludar.mensaje sin devolver errores.</p>
+
+            <h4>4.3.2 Hoisting de const</h4>
+            <p>Al igual que let, las declaraciones const se elevan a la parte superior,
+               pero no se inicializan.</p>
+
+            <h2>5. Resumen</h2>
+            <p>En caso de que no hayas notado las diferencias, aquí están:</p>
+
+            <ul>
+                <li>Las declaraciones var tienen un ámbito global o un ámbito función/local, mientras que let y const tienen
+                    un ámbito de bloque.</li>
+                <li>Las variables var pueden ser modificadas y re-declaradas dentro de su ámbito; las variables let pueden ser
+                    modificadas, pero no re-declaradas; las variables const no pueden ser modificadas ni re-declaradas.</li>
+                <li>Todas ellas se elevan a la parte superior de su ámbito. Pero mientras que las variables var se inicializan con
+                    undefined, let y const no se inicializan.</li>
+                <li>Mientras que var y let pueden ser declaradas sin ser inicializadas, const debe ser inicializada durante
+                    la declaración.</li>
+            </ul>
+
+            <h2>6. Bibliografía</h2>
+            <ul>
+                <li>https://www.freecodecamp.org/espanol/news/var-let-y-const-cual-es-la-diferencia/</li>
+                <li>https://aulab.es/noticia/66/javascript-let-vs-var-cuales-son-las-diferencias</li>
+            </ul>
+            <div class="btn"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver atrás</i></a></div>
+        </div>
+        
+    </div>
+    <div class="footer footer-pages">
+        <div>
+            <i class="fa-regular fa-copyright"></i> Rosa Fraile - 2024
+        </div>
+    </div>
+</body>
+</html>
